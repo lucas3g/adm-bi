@@ -9,8 +9,6 @@ class AuthModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       '/',
-      transition: TransitionType.fadeIn,
-      duration: const Duration(milliseconds: 600),
       child: ((context, args) => const AuthPage()),
     ),
   ];

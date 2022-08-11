@@ -1,3 +1,4 @@
+import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
 import 'package:app_demonstrativo/app/components/my_input_widget.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
@@ -30,22 +31,21 @@ class _AuthPageState extends State<AuthPage> {
 
   final scrollController = ScrollController();
 
-  double returnPositionWidget(GlobalKey<FormState> key) {
-    RenderBox box = key.currentContext!.findRenderObject() as RenderBox;
-    Offset position = box.localToGlobal(Offset.zero);
-    double y = position.dy;
-    return y;
-  }
+  late bool visiblePassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.only(
+          top: 20,
+          right: 20,
+          left: 20,
+        ),
         child: SingleChildScrollView(
           controller: scrollController,
           child: SizedBox(
-            height: context.screenHeight * .98,
+            height: context.screenHeight * .94,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -72,7 +72,7 @@ class _AuthPageState extends State<AuthPage> {
                     MyInputWidget(
                       onTap: () {
                         scrollController.animateTo(
-                          returnPositionWidget(gkCnpj),
+                          0,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.fastOutSlowIn,
                         );
@@ -94,63 +94,67 @@ class _AuthPageState extends State<AuthPage> {
                     MyInputWidget(
                       onTap: () {
                         scrollController.animateTo(
-                          returnPositionWidget(gkUser),
+                          50,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.fastOutSlowIn,
                         );
                       },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: fUser,
                       hintText: 'Digite seu Usuário',
                       label: 'Usuário',
                       textEditingController: userController,
                       formKey: gkUser,
-                      inputFormaters: [
-                        UpperCaseTextFormatter(),
-                      ],
+                      inputFormaters: [UpperCaseTextFormatter()],
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
                       onTap: () {
                         scrollController.animateTo(
-                          returnPositionWidget(gkPassword),
+                          100,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.fastOutSlowIn,
                         );
                       },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: fPassword,
                       hintText: 'Digite sua Senha',
-                      obscureText: true,
+                      obscureText: visiblePassword,
                       label: 'Senha',
                       textEditingController: passwordController,
                       formKey: gkPassword,
                       keyboardType: TextInputType.text,
                       maxLines: 1,
-                      inputFormaters: [
-                        UpperCaseTextFormatter(),
-                      ],
+                      suffixIcon: GestureDetector(
+                        child: Icon(
+                          !visiblePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          size: 25,
+                          color: !visiblePassword
+                              ? AppTheme.colors.primary
+                              : const Color(0xFF666666),
+                        ),
+                        onTap: () {
+                          visiblePassword = !visiblePassword;
+                          setState(() {});
+                        },
+                      ),
+                      inputFormaters: [UpperCaseTextFormatter()],
                     ),
                     const SizedBox(height: 10),
-                    SizedBox(
+                    MyElevatedButtonWidget(
+                      label: const Text('Entrar'),
+                      onPressed: () {
+                        Modular.to.navigate('/dash/');
+                      },
                       height: 40,
                       width: context.screenWidth,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Modular.to.navigate('/dash/');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: const Text('Entrar'),
-                      ),
                     ),
                     const SizedBox(height: 10),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        'Licença para acessar',
-                      ),
+                      child: const Text('Licença para acessar'),
                     )
                   ],
                 ),

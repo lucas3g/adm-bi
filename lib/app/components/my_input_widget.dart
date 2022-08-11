@@ -4,7 +4,6 @@ import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class MyInputWidget extends StatefulWidget {
   final FocusNode focusNode;
@@ -79,26 +78,10 @@ class _MyInputWidgetState extends State<MyInputWidget> {
         textInputAction: widget.textInputAction,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return widget.campoVazio ?? 'Campo em branco';
+            return widget.campoVazio ?? '${widget.label} em branco';
           }
           if (widget.label == 'CNPJ' && !CNPJValidator.isValid(value)) {
             return 'CNPJ inválido';
-          }
-          if ((widget.label == 'KM Final' || widget.label == 'KM Inicial')) {
-            if (int.parse(value) <= 0) {
-              return '${widget.label} não pode ser 0 ou negativo';
-            }
-          }
-          if (widget.label == 'Telefone' &&
-              widget.textEditingController.text.length < 15) {
-            return 'Telefone inválido';
-          }
-          if ((widget.label == 'Litros' || widget.label == 'Valor Total') &&
-              NumberFormat('###,###,###', 'pt_Br')
-                      .parse(widget.textEditingController.text.trim())
-                      .toDouble() ==
-                  0.0) {
-            return '${widget.label} não pode ser zero(0).';
           }
           return null;
         },

@@ -24,7 +24,6 @@ class _DropDownWidgetState extends State<DropDownWidget> {
     return Container(
       alignment: Alignment.center,
       height: 54,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
