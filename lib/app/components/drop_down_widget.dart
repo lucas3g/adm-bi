@@ -10,15 +10,6 @@ class DropDownWidget extends StatefulWidget {
 }
 
 class _DropDownWidgetState extends State<DropDownWidget> {
-  void carregarLocais() async {}
-
-  @override
-  void initState() {
-    carregarLocais();
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +29,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: DropdownButton(
             borderRadius: BorderRadius.circular(20),
-            value: 'Teste',
+            value: 'EL Sistemas Matriz',
             isExpanded: true,
             icon: const Icon(
               Icons.arrow_circle_down_sharp,
@@ -49,10 +40,10 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             style: AppTheme.textStyles.textoSairApp,
             underline: Container(),
             onChanged: (newValue) {},
-            items: ['Teste'].map((local) {
-              return const DropdownMenuItem(
-                value: 'Teste',
-                child: Text('Teste'),
+            items: ['EL Sistemas Matriz', 'EL Sistemas Filial'].map((local) {
+              return DropdownMenuItem(
+                value: local,
+                child: Text(local),
               );
             }).toList(),
           )),

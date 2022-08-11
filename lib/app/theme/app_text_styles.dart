@@ -16,7 +16,8 @@ abstract class AppTextStyles {
   TextStyle get textoTermo;
   TextStyle get textoRadioList;
   TextStyle get textoConfirmarData;
-  TextStyle get textoCancelarData;
+  TextStyle get titleHeaderDashBoard;
+  TextStyle get subTitleHeaderDashBoard;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -80,9 +81,17 @@ class AppTextStylesDefault implements AppTextStyles {
       );
 
   @override
-  TextStyle get textoCancelarData => GoogleFonts.montserrat(
+  TextStyle get titleHeaderDashBoard => GoogleFonts.montserrat(
         fontSize: 14,
         color: Colors.black,
+        fontWeight: FontWeight.bold,
+      );
+
+  @override
+  TextStyle get subTitleHeaderDashBoard => GoogleFonts.montserrat(
+        fontSize: 14,
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
       );
 
   @override

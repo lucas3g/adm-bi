@@ -1,8 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:app_demonstrativo/app/components/drop_down_widget.dart';
 import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
+import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,6 +20,12 @@ class DashBoardPage extends StatefulWidget {
 
 class _DashBoardPageState extends State<DashBoardPage> {
   late int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Modular.to.navigate('/dash/vendas/');
+  }
 
   void confirmarSair() {
     showDialog(
@@ -81,13 +90,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
   }
 
   _appBar(height) => PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, height + 60),
+        preferredSize: Size(
+          MediaQuery.of(context).size.width,
+          height + (Platform.isWindows ? 70 : 60),
+        ),
         child: Stack(
           children: [
             Container(
               padding: const EdgeInsets.only(left: 20),
-              height: height + 45,
-              width: MediaQuery.of(context).size.width,
+              height: height + (Platform.isWindows ? 20 : 40),
+              width: context.screenWidth,
               decoration: BoxDecoration(
                 color: AppTheme.colors.primary,
                 borderRadius: const BorderRadius.only(
@@ -100,9 +112,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 children: [
                   Text(
                     _currentIndex == 0
-                        ? 'Vendas'
+                        ? 'Resumo de Vendas'
                         : _currentIndex == 1
-                            ? 'Tanques de Combustível'
+                            ? 'Contas a Receber / Pagar'
                             : 'Saldo - Contas a Receber',
                     style: AppTheme.textStyles.titleAppBar,
                     textAlign: TextAlign.center,
@@ -120,11 +132,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
               ),
             ),
             Container(),
-            const Positioned(
-              top: 70.0,
+            Positioned(
+              top: (Platform.isWindows ? 55 : 70),
               left: 20.0,
               right: 20.0,
-              child: DropDownWidget(),
+              child: const DropDownWidget(),
             )
           ],
         ),
@@ -134,6 +146,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(AppBar().preferredSize.height),
+      body: const RouterOutlet(),
       bottomNavigationBar: CurvedNavigationBar(
         index: _currentIndex,
         color: AppTheme.colors.primary,
@@ -159,6 +172,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
           setState(() {
             _currentIndex = index;
           });
+
+          if (index == 0) {
+            Modular.to.navigate('/dash/vendas/');
+          } else {
+            Modular.to.navigate('/dash/contas/');
+          }
         },
       ),
     );
