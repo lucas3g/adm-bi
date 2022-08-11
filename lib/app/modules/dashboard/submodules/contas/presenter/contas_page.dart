@@ -10,6 +10,8 @@ class ContasPage extends StatefulWidget {
 class _ContasPageState extends State<ContasPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Contas');
+    return const Center(
+      child: Text('Contas'),
+    );
   }
 }

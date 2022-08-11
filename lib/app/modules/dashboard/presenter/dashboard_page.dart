@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:app_demonstrativo/app/components/drop_down_widget.dart';
 import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
+import 'package:app_demonstrativo/app/components/my_title_app_bar_widget.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -110,15 +111,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    _currentIndex == 0
-                        ? 'Resumo de Vendas'
-                        : _currentIndex == 1
-                            ? 'Contas a Receber / Pagar'
-                            : 'Saldo - Contas a Receber',
-                    style: AppTheme.textStyles.titleAppBar,
-                    textAlign: TextAlign.center,
-                  ),
+                  MyTitleAppBarWidget(index: _currentIndex),
                   IconButton(
                     icon: const Icon(
                       Icons.exit_to_app,
@@ -167,6 +160,32 @@ class _DashBoardPageState extends State<DashBoardPage> {
             size: 30,
             color: Colors.white,
           ),
+          Icon(
+            _currentIndex == 2
+                ? Icons.receipt_long
+                : Icons.receipt_long_rounded,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            _currentIndex == 3
+                ? Icons.call_received
+                : Icons.call_received_rounded,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            _currentIndex == 4 ? Icons.call_made : Icons.call_made_rounded,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            _currentIndex == 5
+                ? Icons.inventory_2_rounded
+                : Icons.inventory_2_outlined,
+            size: 30,
+            color: Colors.white,
+          ),
         ],
         onTap: (index) {
           setState(() {
@@ -175,8 +194,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
           if (index == 0) {
             Modular.to.navigate('/dash/vendas/');
-          } else {
+          }
+          if (index == 1) {
             Modular.to.navigate('/dash/contas/');
+          }
+          if (index == 2) {
+            Modular.to.navigate('/dash/resumo_fp/');
+          }
+          if (index == 3) {
+            Modular.to.navigate('/dash/cr/');
+          }
+          if (index == 4) {
+            Modular.to.navigate('/dash/cp/');
+          }
+          if (index == 5) {
+            Modular.to.navigate('/dash/estoque/');
           }
         },
       ),
