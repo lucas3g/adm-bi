@@ -139,78 +139,84 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(AppBar().preferredSize.height),
-      body: const RouterOutlet(),
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _currentIndex,
-        color: AppTheme.colors.primary,
-        backgroundColor: Colors.white,
-        height: 60,
-        items: [
-          Icon(
-            _currentIndex == 0
-                ? Icons.payments_rounded
-                : Icons.payments_outlined,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            _currentIndex == 1
-                ? Icons.analytics_rounded
-                : Icons.analytics_outlined,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            _currentIndex == 2
-                ? Icons.receipt_long
-                : Icons.receipt_long_rounded,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            _currentIndex == 3
-                ? Icons.call_received
-                : Icons.call_received_rounded,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            _currentIndex == 4 ? Icons.call_made : Icons.call_made_rounded,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            _currentIndex == 5
-                ? Icons.inventory_2_rounded
-                : Icons.inventory_2_outlined,
-            size: 30,
-            color: Colors.white,
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: RouterOutlet(),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: CurvedNavigationBar(
+          index: _currentIndex,
+          color: AppTheme.colors.primary,
+          backgroundColor: Colors.white,
+          height: 60,
+          items: [
+            Icon(
+              _currentIndex == 0
+                  ? Icons.attach_money_rounded
+                  : Icons.attach_money_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              _currentIndex == 1
+                  ? Icons.analytics_rounded
+                  : Icons.analytics_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              _currentIndex == 2
+                  ? Icons.receipt_long
+                  : Icons.receipt_long_rounded,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              _currentIndex == 3
+                  ? Icons.call_received
+                  : Icons.call_received_rounded,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              _currentIndex == 4 ? Icons.call_made : Icons.call_made_rounded,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              _currentIndex == 5
+                  ? Icons.inventory_2_rounded
+                  : Icons.inventory_2_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
 
-          if (index == 0) {
-            Modular.to.navigate('/dash/vendas/');
-          }
-          if (index == 1) {
-            Modular.to.navigate('/dash/contas/');
-          }
-          if (index == 2) {
-            Modular.to.navigate('/dash/resumo_fp/');
-          }
-          if (index == 3) {
-            Modular.to.navigate('/dash/cr/');
-          }
-          if (index == 4) {
-            Modular.to.navigate('/dash/cp/');
-          }
-          if (index == 5) {
-            Modular.to.navigate('/dash/estoque/');
-          }
-        },
+            if (index == 0) {
+              Modular.to.navigate('/dash/vendas/');
+            }
+            if (index == 1) {
+              Modular.to.navigate('/dash/contas/');
+            }
+            if (index == 2) {
+              Modular.to.navigate('/dash/resumo_fp/');
+            }
+            if (index == 3) {
+              Modular.to.navigate('/dash/cr/');
+            }
+            if (index == 4) {
+              Modular.to.navigate('/dash/cp/');
+            }
+            if (index == 5) {
+              Modular.to.navigate('/dash/estoque/');
+            }
+          },
+        ),
       ),
     );
   }

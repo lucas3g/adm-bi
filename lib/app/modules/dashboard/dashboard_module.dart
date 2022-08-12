@@ -10,18 +10,20 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 Widget animationPage(BuildContext context, Animation<double> animation,
     Animation<double> secondaryAnimation, Widget child) {
-  const begin = Offset(0.0, 1.0);
-  const end = Offset.zero;
+  late double begin = 0;
+
+  const end = 1.0;
   const curve = Curves.ease;
 
   final tween = Tween(begin: begin, end: end);
+
   final curvedAnimation = CurvedAnimation(
     parent: animation,
     curve: curve,
   );
 
-  return SlideTransition(
-    position: tween.animate(curvedAnimation),
+  return FadeTransition(
+    opacity: tween.animate(curvedAnimation),
     child: child,
   );
 }

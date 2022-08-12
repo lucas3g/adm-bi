@@ -28,6 +28,14 @@ extension Estoque on String {
   }
 }
 
+extension ReaisSemR on double {
+  String reaisSemR() {
+    final format = NumberFormat('###,###,##0.00', 'pt_BR');
+
+    return format.format(this);
+  }
+}
+
 extension LitroInt on int {
   String LitrosInt() {
     final format = NumberFormat.simpleCurrency(locale: 'pt_br', name: '');

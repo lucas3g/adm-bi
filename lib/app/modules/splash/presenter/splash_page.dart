@@ -1,3 +1,4 @@
+import 'package:app_demonstrativo/app/app_module.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   Future<void> init() async {
     await Future.delayed(const Duration(seconds: 2));
+
+    await Modular.isModuleReady<AppModule>();
+
     Modular.to.navigate('/auth/');
   }
 

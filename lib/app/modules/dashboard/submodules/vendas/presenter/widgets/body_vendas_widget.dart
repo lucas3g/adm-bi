@@ -85,7 +85,7 @@ class _BodyVendasWidgetState extends State<BodyVendasWidget> {
           )
         ],
         title: ChartTitle(
-          text: 'Vendas dos Últimos 7 dias',
+          text: 'Vendas dos últimos 7 dias',
           textStyle: AppTheme.textStyles.titleGraficoVendas,
         ),
       ),
