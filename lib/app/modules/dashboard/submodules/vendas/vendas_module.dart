@@ -1,4 +1,5 @@
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/external/datasources/vendas_datasource.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/datasources/vendas_datasource.dart';
@@ -24,11 +25,18 @@ class VendasModule extends Module {
     //REPOSITORIES
     Bind.factory<IVendasRepository>(
       (i) => VendasRepository(
-        dataSource: i(),
+        dataSourceVendas: i(),
+        dataSourceGrafico: i(),
       ),
     ),
 
     //USECASES
+    Bind.factory<IGetVendasGraficoUseCase>(
+      (i) => GetVendasGraficoUseCase(
+        repository: i(),
+      ),
+    ),
+
     Bind.factory<IGetVendasUseCase>(
       (i) => GetVendasUseCase(
         repository: i(),
@@ -39,6 +47,7 @@ class VendasModule extends Module {
     Bind.singleton<VendasBloc>(
       (i) => VendasBloc(
         getVendasUseCase: i(),
+        getVendasGraficoUseCase: i(),
       ),
     )
   ];

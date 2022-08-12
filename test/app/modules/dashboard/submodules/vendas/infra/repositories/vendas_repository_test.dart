@@ -13,7 +13,10 @@ void main() {
 
   setUp(() {
     dataSource = IVendasDataSourceMock();
-    repository = VendasRepository(dataSource: dataSource);
+    repository = VendasRepository(
+      dataSourceVendas: dataSource,
+      dataSourceGrafico: dataSource,
+    );
   });
 
   test('deve retornar uma lista de vendas', () async {

@@ -23,4 +23,18 @@ class VendasDataSource implements IVendasDataSource {
 
     return jsonDecode(response.data);
   }
+
+  @override
+  Future<List> getVendasGrafico() async {
+    final cnpj = localStorage.getData('CNPJ');
+
+    final response = await clientHttp.get('path');
+
+    if (response.statusCode != 200) {
+      throw const VendasException(
+          message: 'Erro ao buscar vendas para o grafico na API');
+    }
+
+    return jsonDecode(response.data);
+  }
 }

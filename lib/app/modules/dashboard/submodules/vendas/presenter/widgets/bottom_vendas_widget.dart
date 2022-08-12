@@ -35,7 +35,7 @@ class _BottomVendasWidgetState extends State<BottomVendasWidget> {
             child: BlocBuilder<VendasBloc, VendasStates>(
                 bloc: widget.vendasBloc,
                 builder: (context, state) {
-                  if (state is! VendasSuccessState) {
+                  if (state is! VendasLastTenSuccessState) {
                     return ListView.separated(
                       itemBuilder: (context, index) {
                         return const LoadingWidget(

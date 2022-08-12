@@ -24,11 +24,12 @@ class _VendasPageState extends State<VendasPage> {
   void initState() {
     super.initState();
 
+    widget.vendasBloc.add(GetVendasGraficoEvent());
     widget.vendasBloc.add(GetVendasEvent());
 
     sub = widget.vendasBloc.stream.listen((state) {
       if (state is VendasErrorState) {
-        MySnackBar(message: 'Erro ao buscar vendas');
+        MySnackBar(message: state.message);
       }
     });
   }
@@ -49,9 +50,11 @@ class _VendasPageState extends State<VendasPage> {
             flex: 1,
             child: HeaderVendasWidget(),
           ),
-          const Expanded(
+          Expanded(
             flex: 5,
-            child: BodyVendasWidget(),
+            child: BodyVendasWidget(
+              vendasBloc: widget.vendasBloc,
+            ),
           ),
           Expanded(
             flex: 4,
