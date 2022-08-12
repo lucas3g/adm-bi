@@ -25,7 +25,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   void initState() {
     super.initState();
-    Modular.to.navigate('/dash/vendas/');
+    Modular.to.navigate('./vendas/');
   }
 
   void confirmarSair() {

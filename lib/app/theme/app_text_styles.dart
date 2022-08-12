@@ -11,13 +11,14 @@ abstract class AppTextStyles {
   TextStyle get titleEstoque;
   TextStyle get titleViagem;
   TextStyle get titleImageNaoEncontrada;
-  TextStyle get textoSairApp;
+  TextStyle get titleGraficoVendas;
   TextStyle get textoCadastroSucesso;
   TextStyle get textoTermo;
   TextStyle get textoRadioList;
   TextStyle get textoConfirmarData;
   TextStyle get titleHeaderDashBoard;
   TextStyle get subTitleHeaderDashBoard;
+  TextStyle get textoSairApp;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -56,7 +57,7 @@ class AppTextStylesDefault implements AppTextStyles {
       fontSize: 12, color: Colors.black, fontWeight: FontWeight.w700);
 
   @override
-  TextStyle get textoSairApp => GoogleFonts.montserrat(
+  TextStyle get titleGraficoVendas => GoogleFonts.montserrat(
         fontSize: 14,
         color: Colors.black,
         fontWeight: FontWeight.w500,
@@ -99,5 +100,13 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 14,
         color: AppTheme.colors.primary,
         fontWeight: FontWeight.w600,
+      );
+
+  @override
+  TextStyle get textoSairApp => GoogleFonts.montserrat(
+        fontSize: 14,
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+        decoration: TextDecoration.none,
       );
 }

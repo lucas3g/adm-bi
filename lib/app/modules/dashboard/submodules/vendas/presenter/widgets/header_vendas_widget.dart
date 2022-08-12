@@ -1,14 +1,14 @@
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class HeaderDashBoardWidget extends StatefulWidget {
-  const HeaderDashBoardWidget({Key? key}) : super(key: key);
+class HeaderVendasWidget extends StatefulWidget {
+  const HeaderVendasWidget({Key? key}) : super(key: key);
 
   @override
-  State<HeaderDashBoardWidget> createState() => _HeaderDashBoardWidgetState();
+  State<HeaderVendasWidget> createState() => _HeaderVendasWidgetState();
 }
 
-class _HeaderDashBoardWidgetState extends State<HeaderDashBoardWidget> {
+class _HeaderVendasWidgetState extends State<HeaderVendasWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -48,7 +48,7 @@ class _HeaderDashBoardWidgetState extends State<HeaderDashBoardWidget> {
               Column(
                 children: [
                   Text(
-                    'Projeção',
+                    'Lucro',
                     style: AppTheme.textStyles.titleHeaderDashBoard,
                   ),
                   Text(

@@ -1,4 +1,5 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/widgets/header_dashboard_widget.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/widgets/body_vendas_widget.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/widgets/header_vendas_widget.dart';
 import 'package:flutter/material.dart';
 
 class VendasPage extends StatefulWidget {
@@ -11,8 +12,14 @@ class VendasPage extends StatefulWidget {
 class _VendasPageState extends State<VendasPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HeaderDashBoardWidget(),
+    return Scaffold(
+      body: Column(
+        children: const [
+          HeaderVendasWidget(),
+          SizedBox(height: 10),
+          BodyVendasWidget(),
+        ],
+      ),
     );
   }
 }
