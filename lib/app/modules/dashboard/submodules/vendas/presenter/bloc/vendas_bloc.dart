@@ -1,4 +1,3 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
@@ -6,31 +5,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VendasBloc extends Bloc<VendasEvents, VendasStates> {
   final GetVendasUseCase getVendasUseCase;
-  final GetVendasGraficoUseCase getVendasGraficoUseCase;
 
   VendasBloc({
     required this.getVendasUseCase,
-    required this.getVendasGraficoUseCase,
   }) : super(VendasInitialState()) {
     on<GetVendasEvent>(_getVendas);
-    on<GetVendasGraficoEvent>(_getVendasGrafico);
+    on<VendasFilterEvent>(_vendasFilter);
   }
 
   Future _getVendas(GetVendasEvent event, emit) async {
+    emit(state.loading());
     final result = await getVendasUseCase();
 
     result.fold(
-      (l) => emit(VendasErrorState(message: l.message)),
-      (r) => emit(VendasLastTenSuccessState(vendas: r)),
+      (l) => emit(state.error(l.message)),
+      (r) => emit(state.success(vendas: r)),
     );
   }
 
-  Future _getVendasGrafico(GetVendasGraficoEvent event, emit) async {
-    final result = await getVendasGraficoUseCase();
-
-    result.fold(
-      (l) => emit(VendasErrorState(message: l.message)),
-      (r) => emit(VendasSevenDaysSuccessState(vendasGrafico: r)),
-    );
+  void _vendasFilter(VendasFilterEvent event, emit) {
+    emit(state.success(ccusto: event.ccusto));
   }
 }

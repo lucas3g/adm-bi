@@ -1,10 +1,10 @@
-class LucroVendas {
+class ProjecaoVendas {
   final int ccusto;
   final double totalDiario;
   final double totalMes;
   final double lucro;
 
-  LucroVendas({
+  ProjecaoVendas({
     required this.ccusto,
     required this.totalDiario,
     required this.totalMes,

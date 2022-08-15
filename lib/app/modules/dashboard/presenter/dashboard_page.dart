@@ -2,7 +2,8 @@
 
 import 'dart:io';
 
-import 'package:app_demonstrativo/app/components/drop_down_widget.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/drop_down_widget.dart';
 import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
 import 'package:app_demonstrativo/app/components/my_title_app_bar_widget.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
@@ -13,7 +14,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DashBoardPage extends StatefulWidget {
-  const DashBoardPage({Key? key}) : super(key: key);
+  final CCustoBloc ccustoBloc;
+  const DashBoardPage({
+    Key? key,
+    required this.ccustoBloc,
+  }) : super(key: key);
 
   @override
   State<DashBoardPage> createState() => _DashBoardPageState();
@@ -25,13 +30,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   void initState() {
     super.initState();
-    Modular.to.navigate('./vendas/');
+    Modular.to.pushNamed('./vendas/');
   }
 
   void confirmarSair() {
     showDialog(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding:
@@ -93,7 +98,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   _appBar(height) => PreferredSize(
         preferredSize: Size(
           MediaQuery.of(context).size.width,
-          height + (Platform.isWindows ? 70 : 60),
+          height + (Platform.isWindows ? 65 : 60),
         ),
         child: Stack(
           children: [
@@ -129,11 +134,34 @@ class _DashBoardPageState extends State<DashBoardPage> {
               top: (Platform.isWindows ? 55 : 70),
               left: 20.0,
               right: 20.0,
-              child: const DropDownWidget(),
+              child: DropDownWidget(
+                ccustoBloc: widget.ccustoBloc,
+              ),
             )
           ],
         ),
       );
+
+  navigation() {
+    if (_currentIndex == 0) {
+      Modular.to.pushReplacementNamed('../vendas/');
+    }
+    if (_currentIndex == 1) {
+      Modular.to.pushReplacementNamed('../contas/');
+    }
+    if (_currentIndex == 2) {
+      Modular.to.pushReplacementNamed('../resumo_fp/');
+    }
+    if (_currentIndex == 3) {
+      Modular.to.pushReplacementNamed('../cr/');
+    }
+    if (_currentIndex == 4) {
+      Modular.to.pushReplacementNamed('../cp/');
+    }
+    if (_currentIndex == 5) {
+      Modular.to.pushReplacementNamed('../estoque/');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,24 +225,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               _currentIndex = index;
             });
 
-            if (index == 0) {
-              Modular.to.navigate('/dash/vendas/');
-            }
-            if (index == 1) {
-              Modular.to.navigate('/dash/contas/');
-            }
-            if (index == 2) {
-              Modular.to.navigate('/dash/resumo_fp/');
-            }
-            if (index == 3) {
-              Modular.to.navigate('/dash/cr/');
-            }
-            if (index == 4) {
-              Modular.to.navigate('/dash/cp/');
-            }
-            if (index == 5) {
-              Modular.to.navigate('/dash/estoque/');
-            }
+            navigation();
           },
         ),
       ),

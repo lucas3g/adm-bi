@@ -2,4 +2,8 @@ abstract class VendasEvents {}
 
 class GetVendasEvent extends VendasEvents {}
 
-class GetVendasGraficoEvent extends VendasEvents {}
+class VendasFilterEvent extends VendasEvents {
+  final int ccusto;
+
+  VendasFilterEvent({required this.ccusto});
+}

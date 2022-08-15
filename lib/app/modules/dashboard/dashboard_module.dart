@@ -1,3 +1,9 @@
+import 'package:app_demonstrativo/app/components/drop_down_widget/domain/repositories/ccusto_repository.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/domain/usecases/get_ccustos_usecase.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/external/datasources/ccusto_datasource.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/infra/datasources/ccusto_datasource.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/infra/repositories/ccusto_repository.dart';
+import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/presenter/dashboard_page.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/contas_module.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/cp_module.dart';
@@ -7,6 +13,7 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/vendas_module.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 Widget animationPage(BuildContext context, Animation<double> animation,
     Animation<double> secondaryAnimation, Widget child) {
@@ -40,13 +47,44 @@ class DashBoardModule extends Module {
   ];
 
   @override
-  final List<Bind<Object>> binds = [];
+  final List<Bind<Object>> binds = [
+    //DATASOURCES
+    Bind.factory<ICCustoDataSource>(
+      (i) => CCustoDataSource(
+        clientHttp: i(),
+        localStorage: i(),
+      ),
+    ),
+
+    //REPOSITORIES
+    Bind.factory<ICCustoRepository>(
+      (i) => CCustoRepository(
+        dataSource: i(),
+      ),
+    ),
+
+    //USECASES
+    Bind.factory<IGetCCustoUseCase>(
+      (i) => GetCCustoUseCase(
+        repository: i(),
+      ),
+    ),
+
+    //BLOC
+    BlocBind.singleton(
+      (i) => CCustoBloc(
+        getCCustoUseCase: i(),
+      ),
+    ),
+  ];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(
       '/',
-      child: ((context, args) => const DashBoardPage()),
+      child: ((context, args) => DashBoardPage(
+            ccustoBloc: Modular.get<CCustoBloc>(),
+          )),
       children: [
         ModuleRoute(
           '/vendas',

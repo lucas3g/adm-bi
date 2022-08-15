@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[dev] app_dashboard",
+            "request": "launch",
+            "type": "dart",
+            "toolArgs": [
+                "--dart-define",
+                "BASE_URL=https://elinfo2.jelastic.saveincloud.net/AppDashBoard",
+                "--dart-define",
+                "BASE_URL_LICENSE=http://18.228.152.149:9000"
+            ]
+        },
+        {
+            "name": "[prod] app_dashboard",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--release"
+            ],
+            "toolArgs": [
+                "--dart-define",
+                "BASE_URL=https://elinfo2.jelastic.saveincloud.net/AppDashBoard",
+                "--dart-define",
+                "BASE_URL_LICENSE=http://18.228.152.149:9000"
+            ]            
+        },
+    ]
+}

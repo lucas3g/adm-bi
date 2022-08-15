@@ -49,7 +49,7 @@ class _CPPageState extends State<CPPage> {
                   style: AppTheme.textStyles.titleTotalGeralCRCP,
                 ),
                 Text(
-                  'R\$ 150.505,50',
+                  'R\$ 568.505,50',
                   style: AppTheme.textStyles.totalGeralClienteCRCP,
                 ),
               ],

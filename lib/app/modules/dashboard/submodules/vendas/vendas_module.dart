@@ -1,12 +1,16 @@
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_projecao_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/external/datasources/vendas_datasource.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/datasources/vendas_datasource.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/repositories/vendas_repository.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/vendas_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class VendasModule extends Module {
   @override
@@ -31,12 +35,16 @@ class VendasModule extends Module {
     ),
 
     //USECASES
+    Bind.factory<IGetProjecaoUseCase>(
+      (i) => GetProjecaoUseCase(
+        repository: i(),
+      ),
+    ),
     Bind.factory<IGetVendasGraficoUseCase>(
       (i) => GetVendasGraficoUseCase(
         repository: i(),
       ),
     ),
-
     Bind.factory<IGetVendasUseCase>(
       (i) => GetVendasUseCase(
         repository: i(),
@@ -44,12 +52,21 @@ class VendasModule extends Module {
     ),
 
     //BLOC
-    Bind.singleton<VendasBloc>(
-      (i) => VendasBloc(
-        getVendasUseCase: i(),
+    BlocBind.singleton<ProjecaoBloc>(
+      (i) => ProjecaoBloc(
+        getProjecaoUseCase: i(),
+      ),
+    ),
+    BlocBind.singleton<GraficoBloc>(
+      (i) => GraficoBloc(
         getVendasGraficoUseCase: i(),
       ),
-    )
+    ),
+    BlocBind.singleton<VendasBloc>(
+      (i) => VendasBloc(
+        getVendasUseCase: i(),
+      ),
+    ),
   ];
 
   @override
@@ -57,6 +74,8 @@ class VendasModule extends Module {
     ChildRoute(
       '/',
       child: ((context, args) => VendasPage(
+            projecaoBloc: Modular.get<ProjecaoBloc>(),
+            graficoBloc: Modular.get<GraficoBloc>(),
             vendasBloc: Modular.get<VendasBloc>(),
           )),
     ),

@@ -1,11 +1,16 @@
 import 'dart:io';
 
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_cards_saldo_cr_cp_widget.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ContasPage extends StatefulWidget {
-  const ContasPage({Key? key}) : super(key: key);
+  final ContasBloc contasBloc;
+  const ContasPage({
+    Key? key,
+    required this.contasBloc,
+  }) : super(key: key);
 
   @override
   State<ContasPage> createState() => _ContasPageState();

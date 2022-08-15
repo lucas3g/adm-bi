@@ -3,9 +3,9 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain
 class VendasGraficoAdapter {
   static GraficoVendas fromMap(dynamic map) {
     return GraficoVendas(
-      ccusto: map['ccusto'],
-      data: map['data'],
-      total: double.tryParse(map['total']) ?? 0.00,
+      ccusto: map['CCUSTO'],
+      data: DateTime.parse(map['DATA']),
+      total: double.tryParse(map['TOTAL'].toString()) ?? 0.00,
     );
   }
 }
