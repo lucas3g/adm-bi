@@ -22,7 +22,9 @@ class GraficoBloc extends Bloc<GraficoEvents, GraficoStates> {
     );
   }
 
-  void _graficoFilter(GraficoFilterEvent event, emit) {
+  Future _graficoFilter(GraficoFilterEvent event, emit) async {
+    emit(state.loading());
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(state.success(ccusto: event.ccusto));
   }
 }

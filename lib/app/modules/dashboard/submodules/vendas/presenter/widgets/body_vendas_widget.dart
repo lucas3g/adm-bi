@@ -16,6 +16,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BodyVendasWidget extends StatefulWidget {
   final GraficoBloc graficoBloc;
+
   const BodyVendasWidget({
     Key? key,
     required this.graficoBloc,
