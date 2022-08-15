@@ -10,7 +10,7 @@ abstract class CCustoStates {
 }
 
 class CCustoInitialState extends CCustoStates {
-  CCustoInitialState({required super.selectedEmpresa});
+  CCustoInitialState() : super(selectedEmpresa: 0);
 }
 
 class CCustoLoadingState extends CCustoStates {

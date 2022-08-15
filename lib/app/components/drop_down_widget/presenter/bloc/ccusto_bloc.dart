@@ -6,8 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CCustoBloc extends Bloc<CCustoEvents, CCustoStates> {
   final GetCCustoUseCase getCCustoUseCase;
 
-  CCustoBloc({required this.getCCustoUseCase})
-      : super(CCustoInitialState(selectedEmpresa: 0)) {
+  CCustoBloc({required this.getCCustoUseCase}) : super(CCustoInitialState()) {
     on<GetCCustoEvent>(_getCCustos);
     on(_changeCCusto);
   }
