@@ -61,21 +61,6 @@ class _VendasPageState extends State<VendasPage> {
         MySnackBar(message: state.message);
       }
     });
-
-    // widget.projecaoBloc.add(
-    //   ProjecaoFilterEvent(
-    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    // );
-
-    // widget.graficoBloc.add(
-    //   GraficoFilterEvent(
-    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    // );
-
-    // widget.vendasBloc.add(
-    //   VendasFilterEvent(
-    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    // );
   }
 
   @override
@@ -84,11 +69,6 @@ class _VendasPageState extends State<VendasPage> {
     subProjecao.cancel();
     subGrafico.cancel();
     subVendas.cancel();
-
-    //BLOCS
-    widget.projecaoBloc.close();
-    widget.graficoBloc.close();
-    widget.vendasBloc.close();
 
     super.dispose();
   }

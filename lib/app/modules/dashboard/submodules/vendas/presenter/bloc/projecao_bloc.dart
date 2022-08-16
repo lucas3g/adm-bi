@@ -23,7 +23,6 @@ class ProjecaoBloc extends Bloc<ProjecaoEvents, ProjecaoStates> {
   }
 
   Future _projecaoFilter(ProjecaoFilterEvent event, emit) async {
-    emit(state.loading());
     emit(state.success(ccusto: event.ccusto));
   }
 }

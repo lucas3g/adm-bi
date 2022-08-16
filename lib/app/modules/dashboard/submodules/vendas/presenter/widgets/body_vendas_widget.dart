@@ -56,6 +56,9 @@ class _BodyVendasWidgetState extends State<BodyVendasWidget> {
         },
         child: BlocBuilder<GraficoBloc, GraficoStates>(
             bloc: widget.graficoBloc,
+            buildWhen: (previous, current) {
+              return current is GraficoSuccessState;
+            },
             builder: (context, state) {
               if (state is! GraficoSuccessState) {
                 return Column(

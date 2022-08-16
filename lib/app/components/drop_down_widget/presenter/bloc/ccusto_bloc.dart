@@ -8,28 +8,23 @@ class CCustoBloc extends Bloc<CCustoEvents, CCustoStates> {
 
   CCustoBloc({required this.getCCustoUseCase}) : super(CCustoInitialState()) {
     on<GetCCustoEvent>(_getCCustos);
-    on(_changeCCusto);
+    on<ChangeCCustoEvent>(_changeCCusto);
   }
 
   Future _getCCustos(GetCCustoEvent event, emit) async {
-    emit(CCustoLoadingState(selectedEmpresa: 0));
+    emit(state.loading());
     final result = await getCCustoUseCase();
 
     result.fold(
-      (l) => emit(CCustoErrorState(message: l.message, selectedEmpresa: 0)),
+      (l) => emit(state.error(l.message)),
       (r) => emit(CCustoSuccessState(
         ccustos: r,
-        initialValue: r[0].ccusto,
         selectedEmpresa: r[0].ccusto,
       )),
     );
   }
 
   void _changeCCusto(ChangeCCustoEvent event, emit) {
-    emit(CCustoSuccessState(
-      ccustos: (state as CCustoSuccessState).ccustos,
-      initialValue: event.ccusto,
-      selectedEmpresa: event.ccusto,
-    ));
+    emit(state.success(selectedEmpresa: event.ccusto));
   }
 }

@@ -25,11 +25,7 @@ ModuleRoute configuraModule(
 }) {
   return ModuleRoute(
     name,
-    transition: TransitionType.custom,
-    customTransition: CustomTransition(
-        transitionBuilder: (context, animation, secondaryAnimation, child) {
-      return animationPage(context, animation, secondaryAnimation, child);
-    }),
+    transition: TransitionType.noTransition,
     module: module,
   );
 }
@@ -39,7 +35,7 @@ Widget animationPage(BuildContext context, Animation<double> animation,
   late double begin = 0;
 
   const end = 1.0;
-  const curve = Curves.ease;
+  const curve = Curves.fastOutSlowIn;
 
   final tween = Tween(begin: begin, end: end);
 

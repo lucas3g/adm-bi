@@ -14,6 +14,7 @@ class GraficoBloc extends Bloc<GraficoEvents, GraficoStates> {
   }
 
   Future _getVendasGrafico(GetGraficoEvent event, emit) async {
+    emit(state.loading());
     final result = await getVendasGraficoUseCase();
 
     result.fold(
@@ -23,7 +24,6 @@ class GraficoBloc extends Bloc<GraficoEvents, GraficoStates> {
   }
 
   Future _graficoFilter(GraficoFilterEvent event, emit) async {
-    emit(state.loading());
     emit(state.success(ccusto: event.ccusto));
   }
 }

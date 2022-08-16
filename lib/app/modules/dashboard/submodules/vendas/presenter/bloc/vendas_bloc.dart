@@ -19,12 +19,13 @@ class VendasBloc extends Bloc<VendasEvents, VendasStates> {
 
     result.fold(
       (l) => emit(state.error(l.message)),
-      (r) => emit(state.success(vendas: r)),
+      (r) {
+        return emit(state.success(vendas: r));
+      },
     );
   }
 
   Future _vendasFilter(VendasFilterEvent event, emit) async {
-    emit(state.loading());
     emit(state.success(ccusto: event.ccusto));
   }
 }

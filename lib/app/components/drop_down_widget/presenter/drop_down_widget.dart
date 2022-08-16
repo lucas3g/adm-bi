@@ -61,7 +61,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                 }
 
                 final ccustos = state.ccustos;
-                final initialValue = state.initialValue;
+                final initialValue = state.selectedEmpresa;
 
                 return DropdownButton(
                   borderRadius: BorderRadius.circular(10),
@@ -78,7 +78,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   onChanged: (int? newValue) {
                     widget.ccustoBloc.add(ChangeCCustoEvent(ccusto: newValue!));
                   },
-                  items: ccustos!.map((local) {
+                  items: ccustos.map((local) {
                     return DropdownMenuItem(
                       value: local.ccusto,
                       child: Text(local.descricao),

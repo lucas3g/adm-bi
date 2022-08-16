@@ -26,6 +26,7 @@ abstract class AppTextStyles {
   TextStyle get valorResumoVendas;
   TextStyle get totalGeralClienteCRCP;
   TextStyle get titleTotalGeralCRCP;
+  TextStyle get titleResumoFp;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -164,5 +165,12 @@ class AppTextStylesDefault implements AppTextStyles {
         color: Colors.black,
         fontWeight: FontWeight.w500,
         decoration: TextDecoration.none,
+      );
+
+  @override
+  TextStyle get titleResumoFp => GoogleFonts.montserrat(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
       );
 }

@@ -39,6 +39,9 @@ class _HeaderVendasWidgetState extends State<HeaderVendasWidget> {
             },
             child: BlocBuilder<ProjecaoBloc, ProjecaoStates>(
                 bloc: widget.projecaoBloc,
+                buildWhen: (previous, current) {
+                  return current is ProjecaoSuccessState;
+                },
                 builder: (context, state) {
                   if (state is! ProjecaoSuccessState) {
                     return Column(
@@ -79,7 +82,7 @@ class _HeaderVendasWidgetState extends State<HeaderVendasWidget> {
                       Column(
                         children: [
                           Text(
-                            'Semana',
+                            'Mês',
                             style: AppTheme.textStyles.titleHeaderDashBoard,
                           ),
                           projecao.isNotEmpty

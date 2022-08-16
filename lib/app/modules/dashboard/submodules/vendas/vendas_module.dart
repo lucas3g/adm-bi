@@ -24,6 +24,7 @@ class VendasModule extends Module {
         clientHttp: i(),
         localStorage: i(),
       ),
+      export: true,
     ),
 
     //REPOSITORIES
@@ -32,6 +33,7 @@ class VendasModule extends Module {
         dataSourceVendas: i(),
         dataSourceGrafico: i(),
       ),
+      export: true,
     ),
 
     //USECASES
@@ -39,16 +41,19 @@ class VendasModule extends Module {
       (i) => GetProjecaoUseCase(
         repository: i(),
       ),
+      export: true,
     ),
     Bind.factory<IGetVendasGraficoUseCase>(
       (i) => GetVendasGraficoUseCase(
         repository: i(),
       ),
+      export: true,
     ),
     Bind.factory<IGetVendasUseCase>(
       (i) => GetVendasUseCase(
         repository: i(),
       ),
+      export: true,
     ),
 
     //BLOC
@@ -56,16 +61,19 @@ class VendasModule extends Module {
       (i) => ProjecaoBloc(
         getProjecaoUseCase: i(),
       ),
+      export: true,
     ),
     BlocBind.singleton<GraficoBloc>(
       (i) => GraficoBloc(
         getVendasGraficoUseCase: i(),
       ),
+      export: true,
     ),
     BlocBind.singleton<VendasBloc>(
       (i) => VendasBloc(
         getVendasUseCase: i(),
       ),
+      export: true,
     ),
   ];
 

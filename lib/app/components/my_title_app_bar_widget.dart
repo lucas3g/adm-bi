@@ -22,7 +22,7 @@ class MyTitleAppBarWidget extends StatelessWidget {
     }
     if (index == 2) {
       return Text(
-        'Resumo Formas de Pagamento',
+        'Resumo Formas Pag.',
         style: AppTheme.textStyles.titleAppBar,
         textAlign: TextAlign.center,
       );
