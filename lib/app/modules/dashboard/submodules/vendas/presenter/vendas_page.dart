@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
@@ -15,7 +14,6 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presen
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/widgets/header_vendas_widget.dart';
 import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class VendasPage extends StatefulWidget {
   final ProjecaoBloc projecaoBloc;
@@ -64,20 +62,20 @@ class _VendasPageState extends State<VendasPage> {
       }
     });
 
-    widget.projecaoBloc.add(
-      ProjecaoFilterEvent(
-          ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    );
+    // widget.projecaoBloc.add(
+    //   ProjecaoFilterEvent(
+    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
+    // );
 
-    widget.graficoBloc.add(
-      GraficoFilterEvent(
-          ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    );
+    // widget.graficoBloc.add(
+    //   GraficoFilterEvent(
+    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
+    // );
 
-    widget.vendasBloc.add(
-      VendasFilterEvent(
-          ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
-    );
+    // widget.vendasBloc.add(
+    //   VendasFilterEvent(
+    //       ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
+    // );
   }
 
   @override

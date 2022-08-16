@@ -15,6 +15,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
+ModuleRoute configuraModule(
+  String name, {
+  required Module module,
+  TransitionType? transition,
+  CustomTransition? customTransition,
+  Duration? duration,
+  List<RouteGuard> guards = const [],
+}) {
+  return ModuleRoute(
+    name,
+    transition: TransitionType.custom,
+    customTransition: CustomTransition(
+        transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return animationPage(context, animation, secondaryAnimation, child);
+    }),
+    module: module,
+  );
+}
+
 Widget animationPage(BuildContext context, Animation<double> animation,
     Animation<double> secondaryAnimation, Widget child) {
   late double begin = 0;
@@ -86,60 +105,12 @@ class DashBoardModule extends Module {
             ccustoBloc: Modular.get<CCustoBloc>(),
           )),
       children: [
-        ModuleRoute(
-          '/vendas',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: VendasModule(),
-        ),
-        ModuleRoute(
-          '/contas',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: ContasModule(),
-        ),
-        ModuleRoute(
-          '/resumo_fp',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: ResumoFormasModule(),
-        ),
-        ModuleRoute(
-          '/cr',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: CRModule(),
-        ),
-        ModuleRoute(
-          '/cp',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: CPModule(),
-        ),
-        ModuleRoute(
-          '/estoque',
-          transition: TransitionType.custom,
-          customTransition: CustomTransition(transitionBuilder:
-              (context, animation, secondaryAnimation, child) {
-            return animationPage(context, animation, secondaryAnimation, child);
-          }),
-          module: EstoqueModule(),
-        ),
+        configuraModule('/vendas', module: VendasModule()),
+        configuraModule('/contas', module: ContasModule()),
+        configuraModule('/resumo_fp', module: ResumoFormasModule()),
+        configuraModule('/cr', module: CRModule()),
+        configuraModule('/cp', module: CPModule()),
+        configuraModule('/estoque', module: EstoqueModule()),
       ],
     ),
   ];

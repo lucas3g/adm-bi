@@ -25,7 +25,6 @@ class VendasBloc extends Bloc<VendasEvents, VendasStates> {
 
   Future _vendasFilter(VendasFilterEvent event, emit) async {
     emit(state.loading());
-    await Future.delayed(const Duration(milliseconds: 300));
     emit(state.success(ccusto: event.ccusto));
   }
 }

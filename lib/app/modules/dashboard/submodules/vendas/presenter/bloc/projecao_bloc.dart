@@ -24,7 +24,6 @@ class ProjecaoBloc extends Bloc<ProjecaoEvents, ProjecaoStates> {
 
   Future _projecaoFilter(ProjecaoFilterEvent event, emit) async {
     emit(state.loading());
-    await Future.delayed(const Duration(milliseconds: 300));
     emit(state.success(ccusto: event.ccusto));
   }
 }
