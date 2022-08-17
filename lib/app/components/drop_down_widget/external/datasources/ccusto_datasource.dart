@@ -19,8 +19,7 @@ class CCustoDataSource implements ICCustoDataSource {
   Future<List> getCCustos() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final result =
-        await clientHttp.get('$baseUrl/getJson/97305890/locais/locais');
+    final result = await clientHttp.get('$baseUrl/getJson/$cnpj/locais/locais');
 
     if (result.statusCode != 200) {
       throw const CCustoException(message: 'erro ao buscar centro de custo');

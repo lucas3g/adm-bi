@@ -5,6 +5,7 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/infra/
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/contas_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class ContasModule extends Module {
   @override
@@ -35,7 +36,7 @@ class ContasModule extends Module {
     ),
 
     //BLOC
-    Bind.singleton<ContasBloc>(
+    BlocBind.singleton<ContasBloc>(
       (i) => ContasBloc(
         getSaldoContasUseCase: i(),
       ),

@@ -1,16 +1,48 @@
-import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
-import 'package:app_demonstrativo/app/components/my_input_widget.dart';
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
-import 'package:app_demonstrativo/app/utils/constants.dart';
-import 'package:app_demonstrativo/app/utils/formatters.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+import 'dart:io';
+
+import 'package:app_demonstrativo/app/modules/auth/domain/entities/info_device_entity.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/info_device_events.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/info_device_states.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
+import 'package:asuka/asuka.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:app_demonstrativo/app/components/my_input_widget.dart';
+import 'package:app_demonstrativo/app/core_module/services/shared_preferences/adapters/shared_params.dart';
+import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
+import 'package:app_demonstrativo/app/modules/auth/domain/entities/user_entity.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/auth_bloc.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/auth_events.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/info_device_bloc.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/auth_states.dart';
+import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
+import 'package:app_demonstrativo/app/theme/app_theme.dart';
+import 'package:app_demonstrativo/app/utils/constants.dart';
+import 'package:app_demonstrativo/app/utils/formatters.dart';
+import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  final AuthBloc authBloc;
+  final ILocalStorage localStorage;
+  final InfoDeviceBloc infoDeviceBloc;
+  final VerifyLicenseBloc verifyLicenseBloc;
+
+  const AuthPage({
+    Key? key,
+    required this.authBloc,
+    required this.localStorage,
+    required this.infoDeviceBloc,
+    required this.verifyLicenseBloc,
+  }) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -32,6 +64,156 @@ class _AuthPageState extends State<AuthPage> {
   final scrollController = ScrollController();
 
   late bool visiblePassword = true;
+
+  late StreamSubscription sub;
+  late StreamSubscription subInfoDevice;
+  late StreamSubscription subVerifyLicense;
+
+  late InfoDeviceEntity _infoDeviceEntity;
+
+  Future saveLocalStorage() async {
+    await widget.localStorage.setData(
+      params: SharedParams(
+        key: 'logado',
+        value: 'S',
+      ),
+    );
+
+    await widget.localStorage.setData(
+      params: SharedParams(
+        key: 'CNPJ',
+        value: cnpjController.text.replaceAll('.', '').substring(0, 8),
+      ),
+    );
+
+    await widget.localStorage.setData(
+      params: SharedParams(
+        key: 'LICENCA',
+        value: _infoDeviceEntity.id,
+      ),
+    );
+
+    Modular.to.navigate('/dash/');
+  }
+
+  Future<void> mostraDialogCodigo(InfoDeviceEntity infoDeviceEntity) async {
+    await Asuka.showDialog(
+        barrierColor: Colors.black.withOpacity(0.1),
+        builder: (_) {
+          return AlertDialog(
+            elevation: 8,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Código de Autenticação: ${_infoDeviceEntity.id}',
+                  style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 16),
+                ),
+                Text(
+                  'Se você já tem uma licença por favor ignore essa mensagem.',
+                  style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 13),
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          await openWhatsapp(
+                            context: context,
+                            text:
+                                'Código para Licença App Transportes: ${_infoDeviceEntity.id}',
+                            number: '+5554999712433',
+                          );
+                        },
+                        icon: const Icon(Icons.whatsapp_rounded),
+                        label: const Text('Enviar código'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  Future<void> openWhatsapp(
+      {required BuildContext context,
+      required String text,
+      required String number}) async {
+    var whatsapp = number; //+92xx enter like this
+    var whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=$text";
+    var whatsappURLIos = "https://wa.me/$whatsapp?text=${Uri.tryParse(text)}";
+    if (Platform.isIOS) {
+      // for iOS phone only
+      if (await canLaunchUrl(Uri.parse(whatsappURLIos))) {
+        await launchUrl(
+          Uri.parse(
+            whatsappURLIos,
+          ),
+        );
+      } else {
+        MySnackBar(message: "Whatsapp não está instalado");
+      }
+    } else {
+      // android , web
+      if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
+        await launchUrl(Uri.parse(whatsappURlAndroid));
+      } else {
+        MySnackBar(message: "Whatsapp não está instalado");
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.infoDeviceBloc.add(GetInfoDeviceEvent());
+
+    subInfoDevice = widget.infoDeviceBloc.stream.listen((state) async {
+      if (state is InfoDeviceSuccessState) {
+        _infoDeviceEntity = state.infoDeviceEntity;
+        mostraDialogCodigo(_infoDeviceEntity);
+      }
+    });
+
+    subVerifyLicense = widget.verifyLicenseBloc.stream.listen((state) {
+      if (state is VerifyLicenseActiveState) {
+        final User user = User(
+          cnpj: cnpjController.text.trim(),
+          login: userController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        widget.authBloc.add(
+          AuthSignInEvent(user: user),
+        );
+      }
+      if (state is VerifyLicenseNotFoundState) {
+        MySnackBar(
+            message:
+                'Licença não encontrada. Por favor entre em contato com o suporte.');
+      }
+
+      if (state is VerifyLicenseNotActiveState) {
+        MySnackBar(
+            message:
+                'Licença não ativa. Por favor entre em contato com o suporte.');
+      }
+    });
+
+    sub = widget.authBloc.stream.listen((state) async {
+      if (state is AuthErrorState) {
+        MySnackBar(message: state.message);
+      }
+
+      if (state is AuthSuccessState) {
+        await Future.delayed(const Duration(milliseconds: 600));
+        await saveLocalStorage();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +286,7 @@ class _AuthPageState extends State<AuthPage> {
                       hintText: 'Digite seu Usuário',
                       label: 'Usuário',
                       textEditingController: userController,
+                      campoVazio: 'Usuário não pode ser em branco',
                       formKey: gkUser,
                       inputFormaters: [UpperCaseTextFormatter()],
                     ),
@@ -121,6 +304,7 @@ class _AuthPageState extends State<AuthPage> {
                       hintText: 'Digite sua Senha',
                       obscureText: visiblePassword,
                       label: 'Senha',
+                      campoVazio: 'Senha não pode ser em branco',
                       textEditingController: passwordController,
                       formKey: gkPassword,
                       keyboardType: TextInputType.text,
@@ -143,17 +327,89 @@ class _AuthPageState extends State<AuthPage> {
                       inputFormaters: [UpperCaseTextFormatter()],
                     ),
                     const SizedBox(height: 10),
-                    MyElevatedButtonWidget(
-                      label: const Text('Entrar'),
-                      onPressed: () {
-                        Modular.to.navigate('/dash/');
-                      },
-                      height: 40,
-                      width: context.screenWidth,
-                    ),
+                    BlocBuilder<AuthBloc, AuthStates>(
+                        bloc: widget.authBloc,
+                        builder: (context, state) {
+                          return BlocBuilder<VerifyLicenseBloc,
+                                  VerifyLicenseStates>(
+                              bloc: widget.verifyLicenseBloc,
+                              builder: (context, stateLicense) {
+                                return GestureDetector(
+                                  onTap: state is! AuthLoadingState
+                                      ? () async {
+                                          if (!gkCnpj.currentState!.validate() ||
+                                              !gkUser.currentState!
+                                                  .validate() ||
+                                              !gkUser.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
+
+                                          widget.verifyLicenseBloc.add(
+                                            VerifyLicenseEvent(
+                                              id: _infoDeviceEntity.id,
+                                            ),
+                                          );
+                                        }
+                                      : null,
+                                  child: AnimatedContainer(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppTheme.colors.backgroundButton,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 2,
+                                          offset: Offset(0, 2),
+                                          color: Colors.black26,
+                                        )
+                                      ],
+                                    ),
+                                    height: 40,
+                                    duration: const Duration(milliseconds: 600),
+                                    width: stateLicense
+                                                is VerifyLicenseLoadingState ||
+                                            state is AuthLoadingState ||
+                                            state is AuthSuccessState
+                                        ? 40
+                                        : context.screenWidth,
+                                    child: stateLicense
+                                                is VerifyLicenseLoadingState ||
+                                            state is AuthLoadingState
+                                        ? const Center(
+                                            child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                          )
+                                        : state is AuthSuccessState
+                                            ? Center(
+                                                child: Icon(
+                                                  Icons.check_rounded,
+                                                  color:
+                                                      AppTheme.colors.primary,
+                                                ),
+                                              )
+                                            : Text(
+                                                'Entrar',
+                                                style: AppTheme.textStyles
+                                                    .labelButtonLogin,
+                                              ),
+                                  ),
+                                );
+                              });
+                        }),
                     const SizedBox(height: 10),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        await mostraDialogCodigo(_infoDeviceEntity);
+                      },
                       child: const Text('Licença para acessar'),
                     )
                   ],

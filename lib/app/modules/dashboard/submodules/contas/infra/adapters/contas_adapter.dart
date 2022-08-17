@@ -3,9 +3,9 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/domain
 class ContasAdapter {
   static Contas fromMap(dynamic map) {
     return Contas(
-      ccusto: map['ccusto'],
-      total: map['total'],
-      tipo: map['tipo'],
+      ccusto: map['CCUSTO'],
+      total: double.tryParse(map['TOTAL'].toString()) ?? 0.00,
+      tipo: map['TIPO'],
     );
   }
 }

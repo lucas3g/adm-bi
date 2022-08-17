@@ -9,6 +9,7 @@ abstract class AppColors {
   Color get titleEstoque;
   Color get titlePontos;
   Color get logadoComSucesso;
+  Color get backgroundButton;
   MaterialColor get primary;
 
   final String hex = '0xff';
@@ -64,4 +65,7 @@ class AppColorDefault implements AppColors {
 
   @override
   MaterialColor get primary => MaterialColor(hexFinal, color);
+
+  @override
+  Color get backgroundButton => const Color(0xFFFCF3F4);
 }

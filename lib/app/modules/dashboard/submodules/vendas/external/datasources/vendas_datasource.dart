@@ -17,7 +17,7 @@ class VendasDataSource implements IVendasDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final response =
-        await clientHttp.get('$baseUrl/getJson/97305890/vendas/vendas');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/vendas');
 
     if (response.statusCode != 200) {
       throw const VendasException(message: 'Erro ao buscar vendas na API');
@@ -31,7 +31,7 @@ class VendasDataSource implements IVendasDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final response =
-        await clientHttp.get('$baseUrl/getJson/97305890/vendas/grafico');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/grafico');
 
     if (response.statusCode != 200) {
       throw const VendasException(
@@ -46,7 +46,7 @@ class VendasDataSource implements IVendasDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final response =
-        await clientHttp.get('$baseUrl/getJson/97305890/vendas/projecao');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/projecao');
 
     if (response.statusCode != 200) {
       throw const VendasException(message: 'Erro ao buscar projeção na API');

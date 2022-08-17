@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyElevatedButtonWidget extends StatefulWidget {
-  final Text label;
-  final void Function() onPressed;
+  final Widget label;
+  final void Function()? onPressed;
   final double? height;
   final double? width;
   final Color? backGroundColor;

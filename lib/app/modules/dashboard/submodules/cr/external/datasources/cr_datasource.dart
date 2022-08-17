@@ -20,7 +20,7 @@ class CRDataSource implements ICRDataSource {
   Future<List> getResumoCR() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final result = await clientHttp.get('$baseUrl/getJson/97305890/contas/cr');
+    final result = await clientHttp.get('$baseUrl/getJson/$cnpj/contas/cr');
 
     if (result.statusCode != 200) {
       throw const CRException(

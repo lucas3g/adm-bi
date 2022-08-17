@@ -21,7 +21,7 @@ class FormasPagDatSource implements IFormasPagDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final result =
-        await clientHttp.get('$baseUrl/getJson/97305890/formaspag/resumo');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/formaspag/resumo');
 
     if (result.statusCode != 200) {
       throw const FormasPagException(

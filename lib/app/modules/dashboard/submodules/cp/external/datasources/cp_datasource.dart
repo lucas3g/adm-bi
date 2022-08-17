@@ -20,7 +20,7 @@ class CPDataSource implements ICPDataSource {
   Future<List> getResumoCP() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final result = await clientHttp.get('$baseUrl/getJson/97305890/contas/cp');
+    final result = await clientHttp.get('$baseUrl/getJson/$cnpj/contas/cp');
 
     if (result.statusCode != 200) {
       throw const CPException(

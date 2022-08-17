@@ -6,6 +6,7 @@ import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc
 import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/drop_down_widget.dart';
 import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
 import 'package:app_demonstrativo/app/components/my_title_app_bar_widget.dart';
+import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -80,8 +81,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     child: MyElevatedButtonWidget(
                       label: const Text('Sim'),
                       onPressed: () async {
+                        final localStorage = Modular.get<ILocalStorage>();
+
+                        await localStorage.removeData('CNPJ');
+                        await localStorage.removeData('LICENCA');
+                        await localStorage.removeData('logado');
+
                         await Future.delayed(const Duration(milliseconds: 150));
                         Navigator.pop(context);
+
                         Modular.to.navigate('/auth/');
                       },
                     ),
