@@ -20,11 +20,6 @@ class CRBloc extends Bloc<CREvents, CRStates> {
     result.fold(
       (l) => emit(state.error(l.message)),
       (r) {
-        // _filterCR(
-        //     CRFilterEvent(
-        //         ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa,
-        //         filtro: ''),
-        //     emit);
         return emit(state.success(crs: r));
       },
     );

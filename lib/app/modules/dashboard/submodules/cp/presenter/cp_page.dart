@@ -42,6 +42,15 @@ class _CPPageState extends State<CPPage> {
       if (state is CPErrorState) {
         MySnackBar(message: state.message);
       }
+
+      if (state is CPSuccessState) {
+        widget.cpBloc.add(
+          CPFilterEvent(
+            ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa,
+            filtro: '',
+          ),
+        );
+      }
     });
   }
 
@@ -87,10 +96,10 @@ class _CPPageState extends State<CPPage> {
             child: BlocBuilder<CPBloc, CPStates>(
               bloc: widget.cpBloc,
               buildWhen: (previous, current) {
-                return current is CPSuccessState;
+                return current is CPFilteredState;
               },
               builder: (context, state) {
-                if (state is! CPSuccessState) {
+                if (state is! CPFilteredState && state is! CPSuccessState) {
                   return Expanded(
                     child: ListView.separated(
                       itemCount: 10,

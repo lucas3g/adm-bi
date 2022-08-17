@@ -100,10 +100,10 @@ class _CRPageState extends State<CRPage> {
             child: BlocBuilder<CRBloc, CRStates>(
               bloc: widget.crBloc,
               buildWhen: (previous, current) {
-                return current is CRSuccessState;
+                return current is CRFilteredState;
               },
               builder: (context, state) {
-                if (state is! CRSuccessState && state is! CRFilteredState) {
+                if (state is! CRFilteredState && state is! CRSuccessState) {
                   return Expanded(
                     child: ListView.separated(
                       itemCount: 10,

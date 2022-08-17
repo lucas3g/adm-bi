@@ -1,9 +1,7 @@
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/domain/usecases/get_resumo_cp_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/events/cp_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/states/cp_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class CPBloc extends Bloc<CPEvents, CPStates> {
   final GetResumoCPUseCase getResumoCPUseCase;
@@ -22,17 +20,12 @@ class CPBloc extends Bloc<CPEvents, CPStates> {
     result.fold(
       (l) => emit(state.error(l.message)),
       (r) {
-        _filterCP(
-            CPFilterEvent(
-                ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa,
-                filtro: ''),
-            emit);
         return emit(state.success(cps: r));
       },
     );
   }
 
   Future _filterCP(CPFilterEvent event, emit) async {
-    emit(state.success(ccusto: event.ccusto, filtro: event.filtro));
+    emit(state.filtered(ccusto: event.ccusto, filtro: event.filtro));
   }
 }

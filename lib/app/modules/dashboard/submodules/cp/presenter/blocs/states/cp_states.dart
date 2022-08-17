@@ -16,6 +16,14 @@ abstract class CPStates {
     );
   }
 
+  CPFilteredState filtered({List<CP>? cps, int? ccusto, String? filtro}) {
+    return CPFilteredState(
+      cps: cps ?? this.cps,
+      ccusto: ccusto ?? this.ccusto,
+      filtro: filtro ?? this.filtro,
+    );
+  }
+
   CPLoadingState loading() {
     return CPLoadingState(
       cps: cps,
@@ -34,6 +42,10 @@ abstract class CPStates {
   }
 
   List<CP> get filtredList {
+    if (ccusto == 0 && filtro.isEmpty) {
+      return cps;
+    }
+
     if (ccusto > 0 && filtro.isEmpty) {
       return cps
           .where(
@@ -67,6 +79,14 @@ class CPLoadingState extends CPStates {
 
 class CPSuccessState extends CPStates {
   CPSuccessState({
+    required super.cps,
+    required super.ccusto,
+    required super.filtro,
+  });
+}
+
+class CPFilteredState extends CPStates {
+  CPFilteredState({
     required super.cps,
     required super.ccusto,
     required super.filtro,
