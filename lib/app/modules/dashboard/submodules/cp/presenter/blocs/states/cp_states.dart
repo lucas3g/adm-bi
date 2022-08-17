@@ -63,6 +63,13 @@ abstract class CPStates {
         )
         .toList();
   }
+
+  double get saldoCp {
+    return filtredList
+        .map((cr) => cr.valor)
+        .reduce((value, element) => value + element)
+        .toDouble();
+  }
 }
 
 class CPInitialState extends CPStates {

@@ -63,6 +63,13 @@ abstract class CRStates {
         )
         .toList();
   }
+
+  double get saldoCR {
+    return filtredList
+        .map((cr) => cr.valor)
+        .reduce((value, element) => value + element)
+        .toDouble();
+  }
 }
 
 class CRInitialState extends CRStates {

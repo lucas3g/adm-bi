@@ -1,7 +1,9 @@
+import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_projecao_usecase.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/states/projecao_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ProjecaoBloc extends Bloc<ProjecaoEvents, ProjecaoStates> {
   final GetProjecaoUseCase getProjecaoUseCase;
@@ -18,7 +20,14 @@ class ProjecaoBloc extends Bloc<ProjecaoEvents, ProjecaoStates> {
 
     result.fold(
       (l) => emit(state.error(l.message)),
-      (r) => emit(state.success(projecao: r)),
+      (r) {
+        _projecaoFilter(
+          ProjecaoFilterEvent(
+              ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
+          emit,
+        );
+        return emit(state.success(projecao: r));
+      },
     );
   }
 

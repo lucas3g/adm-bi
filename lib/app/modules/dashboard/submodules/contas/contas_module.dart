@@ -19,6 +19,7 @@ class ContasModule extends Module {
         clientHttp: i(),
         localStorage: i(),
       ),
+      export: true,
     ),
 
     //REPOSITORIES
@@ -26,6 +27,7 @@ class ContasModule extends Module {
       (i) => ContasRepository(
         dataSource: i(),
       ),
+      export: true,
     ),
 
     //USECASES
@@ -33,6 +35,7 @@ class ContasModule extends Module {
       (i) => GetSaldoContasUseCase(
         repository: i(),
       ),
+      export: true,
     ),
 
     //BLOC
@@ -40,6 +43,7 @@ class ContasModule extends Module {
       (i) => ContasBloc(
         getSaldoContasUseCase: i(),
       ),
+      export: true,
     ),
   ];
 

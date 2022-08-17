@@ -33,7 +33,17 @@ abstract class ContasStates {
       return contas;
     }
 
+    contas.sort((a, b) => a.tipo.compareTo(b.tipo));
+
     return contas.where((conta) => (conta.ccusto == ccusto)).toList();
+  }
+
+  double get saldoGeral {
+    return filtredList
+        .where((e) => e.tipo == 'A' || e.tipo == 'B')
+        .map((e) => e.total)
+        .reduce((value, element) => value - element)
+        .toDouble();
   }
 }
 

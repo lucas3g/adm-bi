@@ -123,10 +123,7 @@ class _CPPageState extends State<CPPage> {
                   );
                 }
 
-                final totalGeral = cps
-                    .map((cr) => cr.valor)
-                    .reduce((value, element) => value + element)
-                    .toDouble();
+                final totalGeral = state.saldoCp;
 
                 return Expanded(
                   child: Column(

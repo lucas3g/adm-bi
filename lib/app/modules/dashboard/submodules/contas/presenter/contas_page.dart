@@ -29,11 +29,13 @@ class _ContasPageState extends State<ContasPage> {
   late StreamSubscription sub;
 
   Color retornarCorCard(String tipo) {
-    if (tipo == 'CR') {
+    if (tipo == 'A') {
+      //CR
       return Colors.green;
     }
 
-    if (tipo == 'CP') {
+    if (tipo == 'B') {
+      //CP
       return Colors.red;
     }
 
@@ -53,11 +55,13 @@ class _ContasPageState extends State<ContasPage> {
   }
 
   String retornaSubtitleCard(String tipo) {
-    if (tipo == 'CR') {
+    if (tipo == 'A') {
+      //CR
       return 'A receber hoje';
     }
 
-    if (tipo == 'CP') {
+    if (tipo == 'B') {
+      //CP
       return 'A pagar hoje';
     }
 
@@ -97,7 +101,6 @@ class _ContasPageState extends State<ContasPage> {
     super.dispose();
   }
 
-  final double saldo = 500;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,80 +108,84 @@ class _ContasPageState extends State<ContasPage> {
         padding: EdgeInsets.only(
           bottom: context.screenHeight * (Platform.isWindows ? .05 : .18),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                width: context.screenWidth,
-                padding: const EdgeInsets.only(top: 20),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(),
-                  ),
-                ),
-                child: BlocListener<CCustoBloc, CCustoStates>(
-                  bloc: Modular.get<CCustoBloc>(),
-                  listener: (context, state) {
-                    widget.contasBloc.add(
-                      ContasFilterEvent(
-                        ccusto: state.selectedEmpresa,
-                      ),
-                    );
-                  },
-                  child: BlocBuilder<ContasBloc, ContasStates>(
-                      bloc: widget.contasBloc,
-                      buildWhen: (previous, current) {
-                        return current is ContasSuccessState;
-                      },
-                      builder: (context, state) {
-                        if (state is! ContasSuccessState) {
-                          return const LoadingWidget(
-                            size: Size(0, 200),
-                            radius: 10,
-                          );
-                        }
-
-                        final contas = state.filtredList;
-
-                        if (contas.isEmpty) {
-                          return const Text('Nenhum dado encontrado para hoje');
-                        }
-
-                        return GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                          ),
-                          itemCount: contas.length,
-                          itemBuilder: (context, index) {
-                            return MyCardsSaldoCRCP(
-                              backGroundColor:
-                                  retornarCorCard(contas[index].tipo),
-                              saldo: contas[index].total,
-                              subtitle: retornaSubtitleCard(contas[index].tipo),
-                            );
-                          },
-                        );
-                      }),
-                ),
+        child: BlocListener<CCustoBloc, CCustoStates>(
+          bloc: Modular.get<CCustoBloc>(),
+          listener: (context, state) {
+            widget.contasBloc.add(
+              ContasFilterEvent(
+                ccusto: state.selectedEmpresa,
               ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: MyCardsSaldoCRCP(
-                    backGroundColor:
-                        saldo < 0 ? Colors.red : Colors.green.shade700,
-                    saldo: saldo,
-                    subtitle: 'Saldo Geral',
+            );
+          },
+          child: BlocBuilder<ContasBloc, ContasStates>(
+            bloc: widget.contasBloc,
+            buildWhen: (previous, current) {
+              return current is ContasSuccessState;
+            },
+            builder: (context, state) {
+              if (state is! ContasSuccessState) {
+                return LoadingWidget(
+                  size: Size(context.screenWidth, context.screenHeight),
+                  radius: 10,
+                );
+              }
+
+              final contas = state.filtredList;
+
+              if (contas.isEmpty) {
+                return const Center(child: Text('Nenhuma conta encontrada'));
+              }
+
+              final double saldo = state.saldoGeral;
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: context.screenWidth,
+                      padding: const EdgeInsets.only(top: 20),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(),
+                        ),
+                      ),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.7,
+                        ),
+                        itemCount: contas.length,
+                        itemBuilder: (context, index) {
+                          return MyCardsSaldoCRCP(
+                            backGroundColor:
+                                retornarCorCard(contas[index].tipo),
+                            saldo: contas[index].total,
+                            subtitle: retornaSubtitleCard(contas[index].tipo),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: MyCardsSaldoCRCP(
+                          backGroundColor:
+                              saldo < 0 ? Colors.red : Colors.green.shade700,
+                          saldo: saldo,
+                          subtitle: 'Saldo Geral',
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

@@ -127,10 +127,7 @@ class _CRPageState extends State<CRPage> {
                   );
                 }
 
-                final totalGeral = crs
-                    .map((cr) => cr.valor)
-                    .reduce((value, element) => value + element)
-                    .toDouble();
+                final totalGeral = state.saldoCR;
 
                 return Expanded(
                   child: Column(
