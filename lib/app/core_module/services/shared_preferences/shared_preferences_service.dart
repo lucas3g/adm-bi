@@ -6,8 +6,6 @@ import 'local_storage_interface.dart';
 class SharedPreferencesService implements ILocalStorage {
   final SharedPreferences sharedPreferences;
 
-  static const String _prefix = 'flutter.';
-
   SharedPreferencesService({
     required this.sharedPreferences,
   });
