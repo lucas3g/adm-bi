@@ -1,8 +1,7 @@
-import 'local_storage_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 
 import 'adapters/shared_params.dart';
+import 'local_storage_interface.dart';
 
 class SharedPreferencesService implements ILocalStorage {
   final SharedPreferences sharedPreferences;
@@ -44,20 +43,6 @@ class SharedPreferencesService implements ILocalStorage {
   @override
   Future<bool> removeData(String key) async {
     return await sharedPreferences.remove(key);
-  }
-
-  @override
-  void setMockInitialValues(Map<String, Object> values) {
-    final Map<String, Object> newValues =
-        values.map<String, Object>((String key, Object value) {
-      String newKey = key;
-      if (!key.startsWith(_prefix)) {
-        newKey = '$_prefix$key';
-      }
-      return MapEntry<String, Object>(newKey, value);
-    });
-    SharedPreferencesStorePlatform.instance =
-        InMemorySharedPreferencesStore.withData(newValues);
   }
 }
 

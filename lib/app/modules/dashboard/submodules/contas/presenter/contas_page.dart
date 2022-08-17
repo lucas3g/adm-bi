@@ -110,6 +110,8 @@ class _ContasPageState extends State<ContasPage> {
           children: [
             Expanded(
               child: Container(
+                alignment: Alignment.center,
+                width: context.screenWidth,
                 padding: const EdgeInsets.only(top: 20),
                 decoration: const BoxDecoration(
                   border: Border(
