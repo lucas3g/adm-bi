@@ -31,7 +31,7 @@ class _ResumoFormasPageState extends State<ResumoFormasPage> {
   void initState() {
     super.initState();
 
-    widget.formasPagBloc.add(GetFormasPagEvent());
+    //widget.formasPagBloc.add(GetFormasPagEvent());
 
     sub = widget.formasPagBloc.stream.listen((state) {
       if (state is FormasPagErrorState) {

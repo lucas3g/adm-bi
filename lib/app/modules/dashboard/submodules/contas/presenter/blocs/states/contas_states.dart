@@ -39,11 +39,16 @@ abstract class ContasStates {
   }
 
   double get saldoGeral {
-    return filtredList
-        .where((e) => e.tipo == 'A' || e.tipo == 'B')
-        .map((e) => e.total)
-        .reduce((value, element) => value - element)
-        .toDouble();
+    late double saldo = 0;
+    for (var conta in filtredList.where((e) => e.tipo != 'BO').toList()) {
+      //B = CP
+      if (conta.tipo != 'B') {
+        saldo += conta.total;
+      } else {
+        saldo -= conta.total;
+      }
+    }
+    return saldo;
   }
 }
 

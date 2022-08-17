@@ -36,7 +36,7 @@ class _CPPageState extends State<CPPage> {
   @override
   void initState() {
     super.initState();
-    widget.cpBloc.add(GetCPEvent());
+    //widget.cpBloc.add(GetCPEvent());
 
     sub = widget.cpBloc.stream.listen((state) {
       if (state is CPErrorState) {
@@ -89,6 +89,8 @@ class _CPPageState extends State<CPPage> {
           BlocListener<CCustoBloc, CCustoStates>(
             bloc: Modular.get<CCustoBloc>(),
             listener: (context, state) {
+              FocusScope.of(context).requestFocus(FocusNode());
+              pesquisaController.clear();
               widget.cpBloc.add(
                 CPFilterEvent(ccusto: state.selectedEmpresa, filtro: ''),
               );

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
@@ -84,7 +83,7 @@ class _ContasPageState extends State<ContasPage> {
   void initState() {
     super.initState();
 
-    widget.contasBloc.add(GetContasEvent());
+    //widget.contasBloc.add(GetContasEvent());
 
     sub = widget.contasBloc.stream.listen((state) {
       if (state is ContasErrorState) {
@@ -105,8 +104,8 @@ class _ContasPageState extends State<ContasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(
-          bottom: context.screenHeight * (Platform.isWindows ? .05 : .18),
+        padding: const EdgeInsets.only(
+          bottom: 10,
         ),
         child: BlocListener<CCustoBloc, CCustoStates>(
           bloc: Modular.get<CCustoBloc>(),
@@ -142,6 +141,7 @@ class _ContasPageState extends State<ContasPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
+                    flex: 8,
                     child: Container(
                       alignment: Alignment.center,
                       width: context.screenWidth,
@@ -170,17 +170,20 @@ class _ContasPageState extends State<ContasPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: MyCardsSaldoCRCP(
-                          backGroundColor:
-                              saldo < 0 ? Colors.red : Colors.green.shade700,
-                          saldo: saldo,
-                          subtitle: 'Saldo Geral',
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: MyCardsSaldoCRCP(
+                            backGroundColor:
+                                saldo < 0 ? Colors.red : Colors.green.shade700,
+                            saldo: saldo,
+                            subtitle: 'Saldo Geral',
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               );

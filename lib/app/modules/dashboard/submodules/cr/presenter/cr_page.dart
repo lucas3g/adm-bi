@@ -37,7 +37,7 @@ class _CRPageState extends State<CRPage> {
   void initState() {
     super.initState();
 
-    widget.crBloc.add(GetCREvent());
+    // widget.crBloc.add(GetCREvent());
 
     sub = widget.crBloc.stream.listen((state) {
       if (state is CRErrorState) {
@@ -93,6 +93,8 @@ class _CRPageState extends State<CRPage> {
               return current is CCustoSuccessState;
             },
             listener: (context, state) {
+              FocusScope.of(context).requestFocus(FocusNode());
+              pesquisaController.clear();
               widget.crBloc.add(
                 CRFilterEvent(ccusto: state.selectedEmpresa, filtro: ''),
               );

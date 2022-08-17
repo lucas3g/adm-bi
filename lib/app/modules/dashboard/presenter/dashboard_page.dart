@@ -7,6 +7,20 @@ import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/drop
 import 'package:app_demonstrativo/app/components/my_elevated_button_widget.dart';
 import 'package:app_demonstrativo/app/components/my_title_app_bar_widget.dart';
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/cp_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/events/cp_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/presenter/blocs/cr_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/presenter/blocs/events/cr_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/events/formas_pag_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/formas_pag_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
 import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -152,18 +166,25 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   navigation() {
     if (_currentIndex == 0) {
+      Modular.get<VendasBloc>().add(GetVendasEvent());
+      Modular.get<ProjecaoBloc>().add(GetProjecaoEvent());
+      Modular.get<GraficoBloc>().add(GetGraficoEvent());
       Modular.to.pushReplacementNamed('../vendas/');
     }
     if (_currentIndex == 1) {
+      Modular.get<ContasBloc>().add(GetContasEvent());
       Modular.to.pushReplacementNamed('../contas/');
     }
     if (_currentIndex == 2) {
+      Modular.get<FormasPagBloc>().add(GetFormasPagEvent());
       Modular.to.pushReplacementNamed('../resumo_fp/');
     }
     if (_currentIndex == 3) {
+      Modular.get<CRBloc>().add(GetCREvent());
       Modular.to.pushReplacementNamed('../cr/');
     }
     if (_currentIndex == 4) {
+      Modular.get<CPBloc>().add(GetCPEvent());
       Modular.to.pushReplacementNamed('../cp/');
     }
     if (_currentIndex == 5) {
