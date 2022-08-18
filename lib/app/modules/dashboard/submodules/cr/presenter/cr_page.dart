@@ -124,8 +124,10 @@ class _CRPageState extends State<CRPage> {
                 final crs = state.filtredList;
 
                 if (crs.isEmpty) {
-                  return const Center(
-                    child: Text('Nenhum cliente encontrado.'),
+                  return const Expanded(
+                    child: Center(
+                      child: Text('Nenhum cliente encontrado.'),
+                    ),
                   );
                 }
 

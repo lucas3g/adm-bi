@@ -23,6 +23,7 @@ class _MyCardsSaldoCRCPState extends State<MyCardsSaldoCRCP> {
     return Card(
       color: widget.backGroundColor,
       elevation: 5,
+      shadowColor: widget.backGroundColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Column(

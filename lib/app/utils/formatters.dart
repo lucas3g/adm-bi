@@ -20,7 +20,7 @@ extension LitroDouble on double {
   }
 }
 
-extension Estoque on String {
+extension Estoques on String {
   double estoque() {
     final format = NumberFormat('###,###,##0.00', 'pt_BR');
 

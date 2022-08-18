@@ -3,10 +3,9 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain
 class VendasAdapter {
   static Vendas fromMap(dynamic map) {
     return Vendas(
-      nome: map['NOME'],
-      codPedido: map['ID'],
-      valor: double.tryParse(map['VALOR'].toString()) ?? 0.0,
       ccusto: map['CCUSTO'],
+      data: DateTime.parse(map['DATA']),
+      total: double.tryParse(map['TOTAL'].toString()) ?? 0.0,
     );
   }
 }

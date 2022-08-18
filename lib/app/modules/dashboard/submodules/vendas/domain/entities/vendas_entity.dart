@@ -1,13 +1,11 @@
 class Vendas {
-  final String nome;
-  final int codPedido;
-  final double valor;
   final int ccusto;
+  final DateTime data;
+  final double total;
 
   Vendas({
-    required this.nome,
-    required this.codPedido,
-    required this.valor,
     required this.ccusto,
+    required this.data,
+    required this.total,
   });
 }

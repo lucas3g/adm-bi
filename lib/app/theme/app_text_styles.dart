@@ -53,9 +53,10 @@ class AppTextStylesDefault implements AppTextStyles {
 
   @override
   TextStyle get titleEstoque => GoogleFonts.montserrat(
-      fontSize: 18,
-      color: AppTheme.colors.titleEstoque,
-      fontWeight: FontWeight.w700);
+        fontSize: 16,
+        color: AppTheme.colors.titleEstoque,
+        fontWeight: FontWeight.bold,
+      );
 
   @override
   TextStyle get titleViagem => GoogleFonts.montserrat(
@@ -67,10 +68,10 @@ class AppTextStylesDefault implements AppTextStyles {
 
   @override
   TextStyle get titleGraficoVendas => GoogleFonts.montserrat(
-        fontSize: 14,
+        fontSize: 13,
         color: Colors.black,
         fontWeight: FontWeight.w500,
-        decoration: TextDecoration.none,
+        decoration: TextDecoration.underline,
       );
 
   @override
@@ -172,7 +173,7 @@ class AppTextStylesDefault implements AppTextStyles {
   TextStyle get titleResumoFp => GoogleFonts.montserrat(
         fontSize: 16,
         color: Colors.black,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.bold,
       );
 
   @override

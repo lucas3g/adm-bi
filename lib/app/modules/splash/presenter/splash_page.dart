@@ -40,7 +40,10 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> init() async {
     BotToast.showLoading();
-    BotToast.showText(text: 'Validando licença. Aguarde...');
+    BotToast.showText(
+      text: 'Validando licença. Aguarde...',
+      duration: const Duration(seconds: 5),
+    );
 
     await Future.delayed(const Duration(seconds: 2));
 
@@ -90,7 +93,7 @@ class _SplashPageState extends State<SplashPage> {
         BotToast.cleanAll();
         MySnackBar(
             message:
-                'Licença não esta ativa. Por favor entre em contato com o suporte');
+                'Licença não esta ativa. Por favor, entre em contato com o suporte');
         Modular.to.navigate('/auth/');
         return;
       }
@@ -100,7 +103,7 @@ class _SplashPageState extends State<SplashPage> {
         BotToast.cleanAll();
         MySnackBar(
             message:
-                'Licença não encontrada. Por favor entre em contato com o suporte');
+                'Licença não encontrada. Por favor, entre em contato com o suporte');
         Modular.to.navigate('/auth/');
         return;
       }

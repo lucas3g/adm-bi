@@ -107,7 +107,7 @@ class _ResumoFormasPageState extends State<ResumoFormasPage> {
                       ),
                     ),
                   ),
-                  MyGraficoFormasPagWidget(
+                  MyListTileFormasPagWidget(
                     formasPag: formasPag[index],
                   ),
                 ],

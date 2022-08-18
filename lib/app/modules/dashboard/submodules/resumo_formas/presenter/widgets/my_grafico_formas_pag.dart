@@ -20,26 +20,27 @@ import 'package:flutter/material.dart';
 //   const Color(0xFFb7ba00),
 // ];
 
-class MyGraficoFormasPagWidget extends StatefulWidget {
+class MyListTileFormasPagWidget extends StatefulWidget {
   final FormasPag formasPag;
-  const MyGraficoFormasPagWidget({
+  const MyListTileFormasPagWidget({
     Key? key,
     required this.formasPag,
   }) : super(key: key);
 
   @override
-  State<MyGraficoFormasPagWidget> createState() =>
-      _MyGraficoFormasPagWidgetState();
+  State<MyListTileFormasPagWidget> createState() =>
+      _MyListTileFormasPagWidgetState();
 }
 
-class _MyGraficoFormasPagWidgetState extends State<MyGraficoFormasPagWidget> {
+class _MyListTileFormasPagWidgetState extends State<MyListTileFormasPagWidget> {
   int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(widget.formasPag.descricao.trim().capitalize),
+      title: Text(
+          '${widget.formasPag.formaPag} / ${widget.formasPag.descricao.trim().capitalize}'),
       trailing: Text(
         widget.formasPag.totalForma.reais(),
         style: AppTheme.textStyles.valorResumoVendas,

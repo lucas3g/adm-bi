@@ -39,7 +39,7 @@ class _ContasPageState extends State<ContasPage> {
     }
 
     if (tipo == 'CX') {
-      return Colors.amber;
+      return Colors.orange;
     }
 
     if (tipo == 'BC') {
@@ -132,7 +132,55 @@ class _ContasPageState extends State<ContasPage> {
               final contas = state.filtredList;
 
               if (contas.isEmpty) {
-                return const Center(child: Text('Nenhuma conta encontrada'));
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: context.screenWidth,
+                        padding: const EdgeInsets.only(top: 20),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(),
+                          ),
+                        ),
+                        child: GridView.count(
+                          childAspectRatio: 1.7,
+                          crossAxisCount: 2,
+                          children: [
+                            MyCardsSaldoCRCP(
+                              backGroundColor: retornarCorCard('A'),
+                              saldo: 0.00,
+                              subtitle: retornaSubtitleCard('A'),
+                            ),
+                            MyCardsSaldoCRCP(
+                              backGroundColor: retornarCorCard('B'),
+                              saldo: 0.00,
+                              subtitle: retornaSubtitleCard('B'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: MyCardsSaldoCRCP(
+                              backGroundColor: Colors.green.shade700,
+                              saldo: 0.00,
+                              subtitle: 'Saldo Geral',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
               }
 
               final double saldo = state.saldoGeral;

@@ -28,9 +28,18 @@ class _BottomVendasWidgetState extends State<BottomVendasWidget> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          'Últimas 10 vendas de hoje',
-          style: AppTheme.textStyles.titleResumoVendas,
+        Container(
+          width: 'Total de Vendas Diária'.length.toDouble() * 9,
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(),
+            ),
+          ),
+          child: Text(
+            'Total de Vendas Diária',
+            style: AppTheme.textStyles.titleResumoVendas,
+          ),
         ),
         const SizedBox(height: 5),
         Expanded(
@@ -75,10 +84,9 @@ class _BottomVendasWidgetState extends State<BottomVendasWidget> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           contentPadding: EdgeInsets.zero,
-                          title: Text(vendas[index].nome),
-                          subtitle: Text('Pedido: ${vendas[index].codPedido}'),
+                          title: Text(vendas[index].data.DiaMes()),
                           trailing: Text(
-                            vendas[index].valor.reais(),
+                            vendas[index].total.reais(),
                             style: AppTheme.textStyles.valorResumoVendas,
                           ),
                         );

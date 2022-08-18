@@ -120,8 +120,10 @@ class _CPPageState extends State<CPPage> {
                 final cps = state.filtredList;
 
                 if (cps.isEmpty) {
-                  return const Center(
-                    child: Text('Nenhum cliente encontrado.'),
+                  return const Expanded(
+                    child: Center(
+                      child: Text('Nenhum cliente encontrado.'),
+                    ),
                   );
                 }
 
