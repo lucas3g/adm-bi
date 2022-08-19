@@ -5,6 +5,7 @@ import 'package:app_demonstrativo/app/core_module/services/client_http/client_ht
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/exceptions/vendas_exception.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/datasources/vendas_datasource.dart';
+import 'package:app_demonstrativo/app/utils/constants.dart';
 
 class VendasDataSource implements IVendasDataSource {
   final IClientHttp clientHttp;
@@ -16,8 +17,8 @@ class VendasDataSource implements IVendasDataSource {
   Future<List> getVendas() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final response =
-        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/vendas');
+    final response = await clientHttp
+        .get('$baseUrl/getJson/$cnpj/${Constants.urlVendasDiarias}');
 
     if (response.statusCode != 200) {
       throw const VendasException(message: 'Erro ao buscar vendas na API');
@@ -30,8 +31,8 @@ class VendasDataSource implements IVendasDataSource {
   Future<List> getVendasGrafico() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final response =
-        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/grafico');
+    final response = await clientHttp
+        .get('$baseUrl/getJson/$cnpj/${Constants.urlVendasGrafico}');
 
     if (response.statusCode != 200) {
       throw const VendasException(
@@ -45,8 +46,8 @@ class VendasDataSource implements IVendasDataSource {
   Future<List> getProjecao() async {
     final cnpj = localStorage.getData('CNPJ');
 
-    final response =
-        await clientHttp.get('$baseUrl/getJson/$cnpj/vendas/projecao');
+    final response = await clientHttp
+        .get('$baseUrl/getJson/$cnpj/${Constants.urlVendasLucro}');
 
     if (response.statusCode != 200) {
       throw const VendasException(message: 'Erro ao buscar projeção na API');

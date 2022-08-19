@@ -6,6 +6,7 @@ import 'package:app_demonstrativo/app/core_module/services/client_http/client_ht
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/domain/exceptions/estoque_exceptions.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/infra/datasources/estoque_datasource.dart';
+import 'package:app_demonstrativo/app/utils/constants.dart';
 
 class EstoqueDataSource implements IEstoqueDataSource {
   final IClientHttp clientHttp;
@@ -21,7 +22,7 @@ class EstoqueDataSource implements IEstoqueDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final result =
-        await clientHttp.get('$baseUrl/getJson/$cnpj/mercadorias/estoque');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/${Constants.urlEstoque}');
 
     if (result.statusCode != 200) {
       throw const EstoqueException(message: 'Erro ao buscar estoque');

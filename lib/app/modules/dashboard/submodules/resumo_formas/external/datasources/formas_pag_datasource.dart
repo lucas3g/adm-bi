@@ -6,6 +6,7 @@ import 'package:app_demonstrativo/app/core_module/services/client_http/client_ht
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas/domain/exceptions/formas_pag_exception.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas/infra/datasources/formas_pag_datasource.dart';
+import 'package:app_demonstrativo/app/utils/constants.dart';
 
 class FormasPagDatSource implements IFormasPagDataSource {
   final IClientHttp clientHttp;
@@ -21,7 +22,7 @@ class FormasPagDatSource implements IFormasPagDataSource {
     final cnpj = localStorage.getData('CNPJ');
 
     final result =
-        await clientHttp.get('$baseUrl/getJson/$cnpj/formaspag/resumo');
+        await clientHttp.get('$baseUrl/getJson/$cnpj/${Constants.urlResumoFP}');
 
     if (result.statusCode != 200) {
       throw const FormasPagException(
