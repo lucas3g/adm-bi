@@ -155,7 +155,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             ),
             Container(),
             Positioned(
-              top: (Platform.isWindows ? 60 : 70),
+              top: (Platform.isWindows ? 60 : 75),
               left: 20.0,
               right: 20.0,
               child: DropDownWidget(

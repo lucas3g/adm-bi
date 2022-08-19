@@ -78,7 +78,7 @@ class _HeaderVendasWidgetState extends State<HeaderVendasWidget> {
                                 ),
                         ],
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 10),
                       Column(
                         children: [
                           Text(
@@ -98,7 +98,7 @@ class _HeaderVendasWidgetState extends State<HeaderVendasWidget> {
                                 ),
                         ],
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 10),
                       Column(
                         children: [
                           Text(

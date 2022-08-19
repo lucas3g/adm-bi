@@ -1,4 +1,4 @@
-package com.example.app_demonstrativo
+package com.elsistemas.appdashboard
 
 import io.flutter.embedding.android.FlutterActivity
 
