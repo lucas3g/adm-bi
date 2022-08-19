@@ -110,7 +110,7 @@ class _AuthPageState extends State<AuthPage> {
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 16),
                 ),
                 Text(
-                  'Se você já tem uma licença por favor ignore essa mensagem.',
+                  'Se você já tem uma licença. Por favor, ignore essa mensagem.',
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 13),
                 ),
                 const Divider(),
@@ -122,7 +122,11 @@ class _AuthPageState extends State<AuthPage> {
                           await openWhatsapp(
                             context: context,
                             text:
+<<<<<<< HEAD
                                 'Código para Licença App DashBoard: ${_infoDeviceEntity.id}',
+=======
+                                'Código para Licença App Dashboard: ${_infoDeviceEntity.id}',
+>>>>>>> f15ba57e8628014216254051e200d31f06d9c1e4
                             number: '+5554999712433',
                           );
                         },
