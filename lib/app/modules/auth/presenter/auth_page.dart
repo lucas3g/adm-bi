@@ -110,7 +110,7 @@ class _AuthPageState extends State<AuthPage> {
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 16),
                 ),
                 Text(
-                  'Se você já tem uma licença por favor ignore essa mensagem.',
+                  'Se você já tem uma licença. Por favor, ignore essa mensagem.',
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 13),
                 ),
                 const Divider(),
@@ -122,7 +122,7 @@ class _AuthPageState extends State<AuthPage> {
                           await openWhatsapp(
                             context: context,
                             text:
-                                'Código para Licença App Transportes: ${_infoDeviceEntity.id}',
+                                'Código para Licença App Dashboard: ${_infoDeviceEntity.id}',
                             number: '+5554999712433',
                           );
                         },
@@ -193,13 +193,13 @@ class _AuthPageState extends State<AuthPage> {
       if (state is VerifyLicenseNotFoundState) {
         MySnackBar(
             message:
-                'Licença não encontrada. Por favor entre em contato com o suporte.');
+                'Licença não encontrada. Por favor, entre em contato com o suporte.');
       }
 
       if (state is VerifyLicenseNotActiveState) {
         MySnackBar(
             message:
-                'Licença não ativa. Por favor entre em contato com o suporte.');
+                'Licença não ativa. Por favor, entre em contato com o suporte.');
       }
     });
 
