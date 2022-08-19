@@ -63,7 +63,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             children: [
               SvgPicture.asset(
                 'assets/images/sair.svg',
-                height: 130,
+                height: context.screenHeight * .2,
               ),
               const SizedBox(
                 height: 15,

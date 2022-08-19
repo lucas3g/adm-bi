@@ -335,7 +335,12 @@ class _AuthPageState extends State<AuthPage> {
                               bloc: widget.verifyLicenseBloc,
                               builder: (context, stateLicense) {
                                 return GestureDetector(
-                                  onTap: state is! AuthLoadingState
+                                  onTap: stateLicense
+                                              is! VerifyLicenseLoadingState &&
+                                          state is! AuthLoadingState &&
+                                          state is! AuthSuccessState &&
+                                          stateLicense
+                                              is! VerifyLicenseActiveState
                                       ? () async {
                                           if (!gkCnpj.currentState!.validate() ||
                                               !gkUser.currentState!
