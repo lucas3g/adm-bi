@@ -107,7 +107,7 @@ class _EstoquePageState extends State<EstoquePage> {
                     child: ListView.separated(
                       itemBuilder: (context, index) {
                         return const LoadingWidget(
-                            size: Size(100, 40), radius: 10);
+                            size: Size(0, 40), radius: 10);
                       },
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 10),
@@ -117,6 +117,14 @@ class _EstoquePageState extends State<EstoquePage> {
                 }
 
                 final estoques = state.filtredList;
+
+                if (estoques.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('Nenhuma mercadoria encontrada.'),
+                    ),
+                  );
+                }
 
                 return Expanded(
                   child: Column(

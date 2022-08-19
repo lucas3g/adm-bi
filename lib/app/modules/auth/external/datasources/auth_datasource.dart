@@ -28,11 +28,11 @@ class AuthDataSource implements IAuthDataSource {
     await Future.delayed(const Duration(seconds: 1));
 
     if (result.statusCode != 200) {
-      throw const AuthException(message: 'Erro ao tentar fazer login');
+      throw const AuthException(message: 'Erro ao tentar fazer login.');
     }
 
     if (result.data.toString().trim() == '[]') {
-      throw const AuthException(message: 'Usuário não encontrado');
+      throw const AuthException(message: 'Usuário ou senha incorreta.');
     }
 
     if (jsonDecode(result.data)['APP_DASH'] == 'N') {

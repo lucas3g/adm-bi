@@ -155,7 +155,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             ),
             Container(),
             Positioned(
-              top: (Platform.isWindows ? 55 : 70),
+              top: (Platform.isWindows ? 60 : 70),
               left: 20.0,
               right: 20.0,
               child: DropDownWidget(
@@ -236,7 +236,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(AppBar().preferredSize.height),
+      appBar: _appBar(AppBar().preferredSize.height + 10),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: RouterOutlet(),

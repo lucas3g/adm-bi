@@ -122,7 +122,7 @@ class _AuthPageState extends State<AuthPage> {
                           await openWhatsapp(
                             context: context,
                             text:
-                                'Código para Licença App Transportes: ${_infoDeviceEntity.id}',
+                                'Código para Licença App DashBoard: ${_infoDeviceEntity.id}',
                             number: '+5554999712433',
                           );
                         },
@@ -193,13 +193,13 @@ class _AuthPageState extends State<AuthPage> {
       if (state is VerifyLicenseNotFoundState) {
         MySnackBar(
             message:
-                'Licença não encontrada. Por favor entre em contato com o suporte.');
+                'Licença não encontrada. Por favor, entre em contato com o suporte.');
       }
 
       if (state is VerifyLicenseNotActiveState) {
         MySnackBar(
             message:
-                'Licença não ativa. Por favor entre em contato com o suporte.');
+                'Licença não ativa. Por favor, entre em contato com o suporte.');
       }
     });
 
@@ -340,7 +340,7 @@ class _AuthPageState extends State<AuthPage> {
                                           if (!gkCnpj.currentState!.validate() ||
                                               !gkUser.currentState!
                                                   .validate() ||
-                                              !gkUser.currentState!
+                                              !gkPassword.currentState!
                                                   .validate()) {
                                             return;
                                           }
