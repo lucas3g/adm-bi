@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> init() async {
     BotToast.showLoading();
     BotToast.showText(
-      text: 'Validando licença. Aguarde...',
+      text: 'Validando sua licença. Aguarde...',
       duration: const Duration(seconds: 5),
     );
 

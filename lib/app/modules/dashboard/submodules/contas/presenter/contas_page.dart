@@ -6,6 +6,7 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presen
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/states/contas_states.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_cards_saldo_cr_cp_widget.dart';
+import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_loading_contas_widget.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:app_demonstrativo/app/utils/loading_widget.dart';
 import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
@@ -123,10 +124,7 @@ class _ContasPageState extends State<ContasPage> {
             },
             builder: (context, state) {
               if (state is! ContasSuccessState) {
-                return LoadingWidget(
-                  size: Size(context.screenWidth, context.screenHeight),
-                  radius: 10,
-                );
+                return const MyLoadingContasWidget();
               }
 
               final contas = state.filtredList;
