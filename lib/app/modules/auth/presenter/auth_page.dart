@@ -271,6 +271,9 @@ class _AuthPageState extends State<AuthPage> {
                         FilteringTextInputFormatter.digitsOnly,
                         CnpjInputFormatter(),
                       ],
+                      onFieldSubmitted: (value) {
+                        fUser.requestFocus();
+                      },
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
@@ -289,6 +292,9 @@ class _AuthPageState extends State<AuthPage> {
                       campoVazio: 'Usuário não pode ser em branco',
                       formKey: gkUser,
                       inputFormaters: [UpperCaseTextFormatter()],
+                      onFieldSubmitted: (value) {
+                        fPassword.requestFocus();
+                      },
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
@@ -325,6 +331,21 @@ class _AuthPageState extends State<AuthPage> {
                         },
                       ),
                       inputFormaters: [UpperCaseTextFormatter()],
+                      onFieldSubmitted: (value) {
+                        if (!gkCnpj.currentState!.validate() ||
+                            !gkUser.currentState!.validate() ||
+                            !gkPassword.currentState!.validate()) {
+                          return;
+                        }
+
+                        FocusScope.of(context).requestFocus(FocusNode());
+
+                        widget.verifyLicenseBloc.add(
+                          VerifyLicenseEvent(
+                            id: _infoDeviceEntity.id,
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 10),
                     BlocBuilder<AuthBloc, AuthStates>(
