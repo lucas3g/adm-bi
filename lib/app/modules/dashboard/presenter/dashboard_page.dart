@@ -194,7 +194,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
       if (Modular.get<ContasBloc>().state.filtredList.isEmpty) {
         Modular.get<ContasBloc>().add(GetContasEvent());
       } else {
-        Modular.get<ContasBloc>().add(ContasFilterEvent(ccusto: ccusto));
+        Modular.get<ContasBloc>().add(
+          ContasFilterEvent(
+            ccusto: ccusto,
+            diaSemanaMes: 'Dia',
+          ),
+        );
       }
       Modular.to.pushReplacementNamed('../contas/');
     }

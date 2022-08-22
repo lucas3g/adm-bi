@@ -4,7 +4,9 @@ class ContasAdapter {
   static Contas fromMap(dynamic map) {
     return Contas(
       ccusto: map['CCUSTO'],
-      total: double.tryParse(map['TOTAL'].toString()) ?? 0.00,
+      totalDiario: double.tryParse(map['TOTAL_DIA'].toString()) ?? 0.00,
+      totalSemanal: double.tryParse(map['TOTAL_SEMANA'].toString()) ?? 0.00,
+      totalMes: double.tryParse(map['TOTAL_MES'].toString()) ?? 0.00,
       tipo: map['TIPO'],
     );
   }

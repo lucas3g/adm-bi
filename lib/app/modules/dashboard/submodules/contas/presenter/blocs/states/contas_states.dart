@@ -3,13 +3,17 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/domain
 abstract class ContasStates {
   final List<Contas> contas;
   final int ccusto;
+  final String diaSemanaMes;
 
-  ContasStates({required this.contas, required this.ccusto});
+  ContasStates(
+      {required this.contas, required this.ccusto, required this.diaSemanaMes});
 
-  ContasSuccessState success({List<Contas>? contas, int? ccusto}) {
+  ContasSuccessState success(
+      {List<Contas>? contas, int? ccusto, String? diaSemanaMes}) {
     return ContasSuccessState(
       contas: contas ?? this.contas,
       ccusto: ccusto ?? this.ccusto,
+      diaSemanaMes: diaSemanaMes ?? this.diaSemanaMes,
     );
   }
 
@@ -17,6 +21,7 @@ abstract class ContasStates {
     return ContasLoadingState(
       contas: contas,
       ccusto: ccusto,
+      diaSemanaMes: diaSemanaMes,
     );
   }
 
@@ -25,6 +30,7 @@ abstract class ContasStates {
       message: message,
       contas: contas,
       ccusto: ccusto,
+      diaSemanaMes: diaSemanaMes,
     );
   }
 
@@ -43,9 +49,25 @@ abstract class ContasStates {
     for (var conta in filtredList.where((e) => e.tipo != 'BO').toList()) {
       //B = CP
       if (conta.tipo != 'B') {
-        saldo += conta.total;
+        if (diaSemanaMes == 'Dia') {
+          saldo += conta.totalDiario;
+        }
+        if (diaSemanaMes == 'Semana') {
+          saldo += conta.totalSemanal;
+        }
+        if (diaSemanaMes == 'Mes') {
+          saldo += conta.totalMes;
+        }
       } else {
-        saldo -= conta.total;
+        if (diaSemanaMes == 'Dia') {
+          saldo -= conta.totalDiario;
+        }
+        if (diaSemanaMes == 'Semana') {
+          saldo -= conta.totalSemanal;
+        }
+        if (diaSemanaMes == 'Mes') {
+          saldo -= conta.totalMes;
+        }
       }
     }
     return saldo;
@@ -53,13 +75,14 @@ abstract class ContasStates {
 }
 
 class ContasInitialState extends ContasStates {
-  ContasInitialState() : super(contas: [], ccusto: 0);
+  ContasInitialState() : super(contas: [], ccusto: 0, diaSemanaMes: 'Dia');
 }
 
 class ContasLoadingState extends ContasStates {
   ContasLoadingState({
     required super.contas,
     required super.ccusto,
+    required super.diaSemanaMes,
   });
 }
 
@@ -67,6 +90,7 @@ class ContasSuccessState extends ContasStates {
   ContasSuccessState({
     required super.contas,
     required super.ccusto,
+    required super.diaSemanaMes,
   });
 }
 
@@ -77,5 +101,6 @@ class ContasErrorState extends ContasStates {
     required this.message,
     required super.contas,
     required super.ccusto,
+    required super.diaSemanaMes,
   });
 }

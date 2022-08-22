@@ -8,7 +8,6 @@ import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presen
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_cards_saldo_cr_cp_widget.dart';
 import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_loading_contas_widget.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
-import 'package:app_demonstrativo/app/utils/loading_widget.dart';
 import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +26,65 @@ class ContasPage extends StatefulWidget {
 
 class _ContasPageState extends State<ContasPage> {
   late StreamSubscription sub;
+  late String diaSemanaMes = 'Dia';
+
+  retornaDiaSemanaMes(int ccusto, bool back, bool forward) {
+    if (back) {
+      if (diaSemanaMes == 'Mes') {
+        setState(() {
+          diaSemanaMes = 'Semana';
+        });
+        widget.contasBloc.add(
+          ContasFilterEvent(
+            ccusto: ccusto,
+            diaSemanaMes: diaSemanaMes,
+          ),
+        );
+        return;
+      }
+
+      if (diaSemanaMes == 'Semana') {
+        setState(() {
+          diaSemanaMes = 'Dia';
+        });
+        widget.contasBloc.add(
+          ContasFilterEvent(
+            ccusto: ccusto,
+            diaSemanaMes: diaSemanaMes,
+          ),
+        );
+        return;
+      }
+    }
+
+    if (forward) {
+      if (diaSemanaMes == 'Dia') {
+        setState(() {
+          diaSemanaMes = 'Semana';
+        });
+        widget.contasBloc.add(
+          ContasFilterEvent(
+            ccusto: ccusto,
+            diaSemanaMes: diaSemanaMes,
+          ),
+        );
+        return;
+      }
+
+      if (diaSemanaMes == 'Semana') {
+        setState(() {
+          diaSemanaMes = 'Mes';
+        });
+        widget.contasBloc.add(
+          ContasFilterEvent(
+            ccusto: ccusto,
+            diaSemanaMes: diaSemanaMes,
+          ),
+        );
+        return;
+      }
+    }
+  }
 
   Color retornarCorCard(String tipo) {
     if (tipo == 'A') {
@@ -110,10 +168,11 @@ class _ContasPageState extends State<ContasPage> {
         ),
         child: BlocListener<CCustoBloc, CCustoStates>(
           bloc: Modular.get<CCustoBloc>(),
-          listener: (context, state) {
+          listener: (context, stateCCusto) {
             widget.contasBloc.add(
               ContasFilterEvent(
-                ccusto: state.selectedEmpresa,
+                ccusto: stateCCusto.selectedEmpresa,
+                diaSemanaMes: diaSemanaMes,
               ),
             );
           },
@@ -142,6 +201,39 @@ class _ContasPageState extends State<ContasPage> {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  Container(
+                    height: 40,
+                    padding: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          splashRadius: 10,
+                          onPressed: () {
+                            retornaDiaSemanaMes(state.ccusto, true, false);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                          ),
+                        ),
+                        Text(diaSemanaMes),
+                        IconButton(
+                          splashRadius: 10,
+                          onPressed: () {
+                            retornaDiaSemanaMes(state.ccusto, false, true);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward_ios,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     flex: 8,
                     child: Container(
@@ -164,7 +256,11 @@ class _ContasPageState extends State<ContasPage> {
                           return MyCardsSaldoCRCP(
                             backGroundColor:
                                 retornarCorCard(contas[index].tipo),
-                            saldo: contas[index].total,
+                            saldo: diaSemanaMes == 'Dia'
+                                ? contas[index].totalDiario
+                                : diaSemanaMes == 'Semana'
+                                    ? contas[index].totalSemanal
+                                    : contas[index].totalMes,
                             subtitle: retornaSubtitleCard(contas[index].tipo),
                           );
                         },

@@ -26,7 +26,9 @@ class ContasBloc extends Bloc<ContasEvents, ContasStates> {
       (r) {
         _contasFilter(
           ContasFilterEvent(
-              ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa),
+            ccusto: Modular.get<CCustoBloc>().state.selectedEmpresa,
+            diaSemanaMes: 'Dia',
+          ),
           emit,
         );
         return emit(state.success(contas: r));
@@ -35,6 +37,11 @@ class ContasBloc extends Bloc<ContasEvents, ContasStates> {
   }
 
   Future _contasFilter(ContasFilterEvent event, emit) async {
-    emit(state.success(ccusto: event.ccusto));
+    emit(
+      state.success(
+        ccusto: event.ccusto,
+        diaSemanaMes: event.diaSemanaMes,
+      ),
+    );
   }
 }
