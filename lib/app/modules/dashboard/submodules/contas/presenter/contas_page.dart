@@ -212,25 +212,35 @@ class _ContasPageState extends State<ContasPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        IconButton(
-                          splashRadius: 10,
-                          onPressed: () {
-                            retornaDiaSemanaMes(state.ccusto, true, false);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
+                        if (diaSemanaMes != 'Dia') ...[
+                          IconButton(
+                            splashRadius: 10,
+                            onPressed: () {
+                              retornaDiaSemanaMes(state.ccusto, true, false);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                            ),
                           ),
-                        ),
+                        ] else
+                          const SizedBox(
+                            width: 30,
+                          ),
                         Text(diaSemanaMes),
-                        IconButton(
-                          splashRadius: 10,
-                          onPressed: () {
-                            retornaDiaSemanaMes(state.ccusto, false, true);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_forward_ios,
+                        if (diaSemanaMes != 'Mes') ...[
+                          IconButton(
+                            splashRadius: 10,
+                            onPressed: () {
+                              retornaDiaSemanaMes(state.ccusto, false, true);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward_ios,
+                            ),
                           ),
-                        ),
+                        ] else
+                          const SizedBox(
+                            width: 30,
+                          ),
                       ],
                     ),
                   ),
@@ -267,9 +277,8 @@ class _ContasPageState extends State<ContasPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Row(
                       children: [
                         Expanded(
