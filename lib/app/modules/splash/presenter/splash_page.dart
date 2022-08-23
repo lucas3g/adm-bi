@@ -9,14 +9,11 @@ import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:lottie/lottie.dart';
 
 import 'package:app_demonstrativo/app/app_module.dart';
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/info_device_bloc.dart';
 import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
-import 'package:app_demonstrativo/app/utils/constants.dart';
 
 class SplashPage extends StatefulWidget {
   final VerifyLicenseBloc verifyLicenseBloc;
@@ -118,15 +115,14 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              'assets/images/logo.json',
-              width: context.screenWidth * .6,
+            Image.asset(
+              'assets/images/icon.png',
             ),
-            const Divider(),
-            Text(
-              'Demonstrativo',
-              style: AppTheme.textStyles.titleSplash,
-            ),
+            // const Divider(),
+            // Text(
+            //   'Demonstrativo',
+            //   style: AppTheme.textStyles.titleSplash,
+            // ),
           ],
         ),
       ),
