@@ -17,6 +17,7 @@ class AppWidget extends StatelessWidget {
     ]);
 
     return MaterialApp.router(
+      title: 'Demonstrativo',
       builder: (context, widget) {
         widget = Asuka.builder(context, widget);
         widget = BotToastInit()(context, widget);

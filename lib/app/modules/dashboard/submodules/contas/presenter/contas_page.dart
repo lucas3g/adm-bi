@@ -162,6 +162,7 @@ class _ContasPageState extends State<ContasPage> {
                       children: [
                         if (diaSemanaMes != 'Dia') ...[
                           IconButton(
+                            iconSize: 20,
                             splashRadius: 10,
                             onPressed: () {
                               retornaDiaSemanaMes(state.ccusto, true, false);
@@ -172,11 +173,12 @@ class _ContasPageState extends State<ContasPage> {
                           ),
                         ] else
                           const SizedBox(
-                            width: 30,
+                            width: 35,
                           ),
                         Text(diaSemanaMes),
                         if (diaSemanaMes != 'Mes') ...[
                           IconButton(
+                            iconSize: 20,
                             splashRadius: 10,
                             onPressed: () {
                               retornaDiaSemanaMes(state.ccusto, false, true);
@@ -187,7 +189,7 @@ class _ContasPageState extends State<ContasPage> {
                           ),
                         ] else
                           const SizedBox(
-                            width: 30,
+                            width: 35,
                           ),
                       ],
                     ),
