@@ -39,16 +39,17 @@ abstract class ContasStates {
       return contas;
     }
 
-    contas.sort((a, b) => a.tipo.compareTo(b.tipo));
+    contas.sort((a, b) => a.cardSubtitle.compareTo(b.cardSubtitle));
 
     return contas.where((conta) => (conta.ccusto == ccusto)).toList();
   }
 
   double get saldoGeral {
     late double saldo = 0;
-    for (var conta in filtredList.where((e) => e.tipo != 'BO').toList()) {
+    for (var conta
+        in filtredList.where((e) => e.cardSubtitle != 'Boletos').toList()) {
       //B = CP
-      if (conta.tipo != 'B') {
+      if (conta.dc != 'D') {
         if (diaSemanaMes == 'Dia') {
           saldo += conta.totalDiario;
         }

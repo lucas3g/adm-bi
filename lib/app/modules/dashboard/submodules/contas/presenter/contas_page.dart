@@ -86,58 +86,6 @@ class _ContasPageState extends State<ContasPage> {
     }
   }
 
-  Color retornarCorCard(String tipo) {
-    if (tipo == 'A') {
-      //CR
-      return Colors.green;
-    }
-
-    if (tipo == 'B') {
-      //CP
-      return Colors.red;
-    }
-
-    if (tipo == 'CX') {
-      return Colors.orange;
-    }
-
-    if (tipo == 'BC') {
-      return Colors.teal;
-    }
-
-    if (tipo == 'BO') {
-      return Colors.blue;
-    }
-
-    return Colors.green.shade700;
-  }
-
-  String retornaSubtitleCard(String tipo) {
-    if (tipo == 'A') {
-      //CR
-      return 'A receber hoje';
-    }
-
-    if (tipo == 'B') {
-      //CP
-      return 'A pagar hoje';
-    }
-
-    if (tipo == 'CX') {
-      return 'Caixa';
-    }
-
-    if (tipo == 'BC') {
-      return 'Bancos';
-    }
-
-    if (tipo == 'BO') {
-      return 'Boletos';
-    }
-
-    return 'Saldo Geral';
-  }
-
   @override
   void initState() {
     super.initState();
@@ -264,14 +212,16 @@ class _ContasPageState extends State<ContasPage> {
                         itemCount: contas.length,
                         itemBuilder: (context, index) {
                           return MyCardsSaldoCRCP(
-                            backGroundColor:
-                                retornarCorCard(contas[index].tipo),
+                            backGroundColor: Color(contas[index].cardColor),
                             saldo: diaSemanaMes == 'Dia'
                                 ? contas[index].totalDiario
                                 : diaSemanaMes == 'Semana'
                                     ? contas[index].totalSemanal
                                     : contas[index].totalMes,
-                            subtitle: retornaSubtitleCard(contas[index].tipo),
+                            subtitle: contas[index]
+                                .cardSubtitle
+                                .replaceAll('1', '')
+                                .replaceAll('2', ''),
                           );
                         },
                       ),
@@ -283,8 +233,9 @@ class _ContasPageState extends State<ContasPage> {
                       children: [
                         Expanded(
                           child: MyCardsSaldoCRCP(
-                            backGroundColor:
-                                saldo < 0 ? Colors.red : Colors.green.shade700,
+                            backGroundColor: saldo < 0
+                                ? const Color(0xfffe2836)
+                                : const Color(0xff4bac35),
                             saldo: saldo,
                             subtitle: 'Saldo Geral',
                           ),
