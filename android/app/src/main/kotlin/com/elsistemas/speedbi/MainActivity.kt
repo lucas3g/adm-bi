@@ -1,4 +1,4 @@
-package com.elsistemas.appdashboard
+package com.elsistemas.speedbi
 
 import io.flutter.embedding.android.FlutterActivity
 

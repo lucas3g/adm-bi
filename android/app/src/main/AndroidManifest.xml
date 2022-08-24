@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.elsistemas.appdashboard">
+    package="com.elsistemas.speedbi">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     
