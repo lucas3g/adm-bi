@@ -122,7 +122,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
   _appBar(height) => PreferredSize(
         preferredSize: Size(
           MediaQuery.of(context).size.width,
-          height + (Platform.isWindows ? 65 : 60),
+          height +
+              (Platform.isWindows
+                  ? 65
+                  : Platform.isIOS
+                      ? 40
+                      : 60),
         ),
         child: Stack(
           children: [

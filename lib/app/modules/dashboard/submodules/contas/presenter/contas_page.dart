@@ -230,7 +230,7 @@ class _ContasPageState extends State<ContasPage> {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 2,
                     child: Row(
                       children: [
                         Expanded(
