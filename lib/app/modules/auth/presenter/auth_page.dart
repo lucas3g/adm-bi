@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:lottie/lottie.dart';
 
 import 'package:app_demonstrativo/app/components/my_input_widget.dart';
 import 'package:app_demonstrativo/app/core_module/services/shared_preferences/adapters/shared_params.dart';
@@ -28,6 +27,7 @@ import 'package:app_demonstrativo/app/theme/app_theme.dart';
 import 'package:app_demonstrativo/app/utils/constants.dart';
 import 'package:app_demonstrativo/app/utils/formatters.dart';
 import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AuthPage extends StatefulWidget {
@@ -213,6 +213,36 @@ class _AuthPageState extends State<AuthPage> {
         await saveLocalStorage();
       }
     });
+
+    fCnpj.addListener(() {
+      if (fCnpj.hasFocus) {
+        scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastOutSlowIn,
+        );
+      }
+    });
+
+    fUser.addListener(() {
+      if (fUser.hasFocus) {
+        scrollController.animateTo(
+          50,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastOutSlowIn,
+        );
+      }
+    });
+
+    fPassword.addListener(() {
+      if (fPassword.hasFocus) {
+        scrollController.animateTo(
+          100,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastOutSlowIn,
+        );
+      }
+    });
   }
 
   @override
@@ -231,18 +261,10 @@ class _AuthPageState extends State<AuthPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    Lottie.asset(
-                      'assets/images/logo.json',
-                      height: context.screenHeight * .27,
-                    ),
-                    const Divider(),
-                    Text(
-                      'Demonstrativo',
-                      style: AppTheme.textStyles.titleSplash,
-                    ),
-                  ],
+                const SizedBox(),
+                SvgPicture.asset(
+                  'assets/images/speed.svg',
+                  width: context.screenWidth * .90,
                 ),
                 Column(
                   children: [
@@ -252,13 +274,6 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
-                      onTap: () {
-                        scrollController.animateTo(
-                          0,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.fastOutSlowIn,
-                        );
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: fCnpj,
                       hintText: 'Digite o CNPJ da sua Empresa',
@@ -277,13 +292,6 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
-                      onTap: () {
-                        scrollController.animateTo(
-                          50,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.fastOutSlowIn,
-                        );
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: fUser,
                       hintText: 'Digite seu Usuário',
@@ -298,13 +306,6 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     const SizedBox(height: 10),
                     MyInputWidget(
-                      onTap: () {
-                        scrollController.animateTo(
-                          100,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.fastOutSlowIn,
-                        );
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: fPassword,
                       hintText: 'Digite sua Senha',
