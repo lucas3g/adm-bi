@@ -8,6 +8,7 @@ import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/info_device_b
 import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
 import 'package:app_demonstrativo/app/modules/splash/presenter/splash_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class SplashModule extends Module {
   @override
@@ -28,8 +29,8 @@ class SplashModule extends Module {
     Bind.factory((i) => GetInfosDeviceUseCase(infoDeviceRepository: i())),
 
     //BLOC
-    Bind.singleton((i) => VerifyLicenseBloc(verifyLicenseUseCase: i())),
-    Bind.singleton((i) => InfoDeviceBloc(getInfosDeviceUseCase: i())),
+    BlocBind.singleton((i) => VerifyLicenseBloc(verifyLicenseUseCase: i())),
+    BlocBind.singleton((i) => InfoDeviceBloc(getInfosDeviceUseCase: i())),
   ];
 
   @override
