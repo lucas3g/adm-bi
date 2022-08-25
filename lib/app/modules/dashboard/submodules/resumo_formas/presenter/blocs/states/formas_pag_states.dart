@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/resumo_formas/domain/entities/formas_pag_entity.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/resumo_formas/domain/entities/formas_pag_entity.dart';
 
 abstract class FormasPagStates {
   final List<FormasPag> formasPag;

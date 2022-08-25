@@ -1,6 +1,6 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/domain/usecases/get_resumo_cr_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/presenter/blocs/events/cr_events.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/presenter/blocs/states/cr_states.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cr/domain/usecases/get_resumo_cr_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cr/presenter/blocs/events/cr_events.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cr/presenter/blocs/states/cr_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CRBloc extends Bloc<CREvents, CRStates> {

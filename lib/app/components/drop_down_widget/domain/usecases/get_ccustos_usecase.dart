@@ -1,7 +1,7 @@
-import 'package:app_demonstrativo/app/components/drop_down_widget/domain/entities/ccusto_entity.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/domain/exception/ccusto_exception.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/domain/repositories/ccusto_repository.dart';
-import 'package:app_demonstrativo/app/core_module/types/either.dart';
+import 'package:speed_bi/app/components/drop_down_widget/domain/entities/ccusto_entity.dart';
+import 'package:speed_bi/app/components/drop_down_widget/domain/exception/ccusto_exception.dart';
+import 'package:speed_bi/app/components/drop_down_widget/domain/repositories/ccusto_repository.dart';
+import 'package:speed_bi/app/core_module/types/either.dart';
 
 abstract class IGetCCustoUseCase {
   Future<Either<ICCustoException, List<CCusto>>> call();

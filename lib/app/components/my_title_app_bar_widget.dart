@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
+import 'package:speed_bi/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyTitleAppBarWidget extends StatelessWidget {

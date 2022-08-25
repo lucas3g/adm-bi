@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/components/drop_down_widget/domain/entities/ccusto_entity.dart';
+import 'package:speed_bi/app/components/drop_down_widget/domain/entities/ccusto_entity.dart';
 
 abstract class CCustoStates {
   final List<CCusto> ccustos;

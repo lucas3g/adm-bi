@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/utils/navigation_service.dart';
+import 'package:speed_bi/app/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class MySnackBar {

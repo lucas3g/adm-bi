@@ -1,6 +1,6 @@
-import 'package:app_demonstrativo/app/modules/auth/domain/usecases/get_infos_device_usecase.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/info_device_events.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/info_device_states.dart';
+import 'package:speed_bi/app/modules/auth/domain/usecases/get_infos_device_usecase.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/events/info_device_events.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/states/info_device_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InfoDeviceBloc extends Bloc<InfoDeviceEvents, InfoDeviceStates> {

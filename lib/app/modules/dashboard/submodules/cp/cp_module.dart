@@ -1,10 +1,10 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/domain/repositories/cp_repository.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/domain/usecases/get_resumo_cp_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/external/datasources/cP_datasource.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/infra/datasources/cp_datasource.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/infra/repositories/cp_repository.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/cp_bloc.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/cp_page.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/repositories/cp_repository.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/usecases/get_resumo_cp_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/external/datasources/cP_datasource.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/infra/datasources/cp_datasource.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/infra/repositories/cp_repository.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/presenter/blocs/cp_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/presenter/cp_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 

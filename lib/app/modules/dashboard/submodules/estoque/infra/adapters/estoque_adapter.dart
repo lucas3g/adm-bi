@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/domain/entities/estoque_entity.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/estoque/domain/entities/estoque_entity.dart';
 
 class EstoqueAdapter {
   static Estoque fromMap(dynamic map) {

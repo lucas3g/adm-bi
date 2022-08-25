@@ -1,6 +1,6 @@
-import 'package:app_demonstrativo/app/modules/auth/domain/usecases/verify_license_usecase.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
+import 'package:speed_bi/app/modules/auth/domain/usecases/verify_license_usecase.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifyLicenseBloc extends Bloc<VerifyLicenseEvents, VerifyLicenseStates> {

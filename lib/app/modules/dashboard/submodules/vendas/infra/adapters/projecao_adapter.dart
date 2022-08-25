@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/entities/projecao_vendas.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/entities/projecao_vendas.dart';
 
 class ProjecaoAdapter {
   static ProjecaoVendas fromMap(dynamic map) {

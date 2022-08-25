@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/domain/entities/cr_entity.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cr/domain/entities/cr_entity.dart';
 
 class CRAdapter {
   static CR fromMap(dynamic map) {

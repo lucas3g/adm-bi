@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/blocs/states/contas_states.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_cards_saldo_cr_cp_widget.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/contas/presenter/widgets/my_loading_contas_widget.dart';
-import 'package:app_demonstrativo/app/utils/constants.dart';
-import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/contas/presenter/blocs/states/contas_states.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/contas/presenter/widgets/my_cards_saldo_cr_cp_widget.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/contas/presenter/widgets/my_loading_contas_widget.dart';
+import 'package:speed_bi/app/utils/constants.dart';
+import 'package:speed_bi/app/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

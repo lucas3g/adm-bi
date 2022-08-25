@@ -1,14 +1,14 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_projecao_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/external/datasources/vendas_datasource.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/datasources/vendas_datasource.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/infra/repositories/vendas_repository.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/presenter/vendas_page.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_projecao_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/external/datasources/vendas_datasource.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/infra/datasources/vendas_datasource.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/infra/repositories/vendas_repository.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/vendas_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 

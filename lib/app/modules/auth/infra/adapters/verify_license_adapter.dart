@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/modules/auth/domain/entities/verify_license_entity.dart';
+import 'package:speed_bi/app/modules/auth/domain/entities/verify_license_entity.dart';
 
 class VerifyLicenseAdapter {
   static VerifyLicenseEntity fromMap(Map map) {

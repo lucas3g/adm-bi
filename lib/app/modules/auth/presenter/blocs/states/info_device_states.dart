@@ -1,4 +1,4 @@
-import 'package:app_demonstrativo/app/modules/auth/domain/entities/info_device_entity.dart';
+import 'package:speed_bi/app/modules/auth/domain/entities/info_device_entity.dart';
 
 abstract class InfoDeviceStates {}
 

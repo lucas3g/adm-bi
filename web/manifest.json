@@ -1,6 +1,6 @@
 {
-    "name": "app_demonstrativo",
-    "short_name": "app_demonstrativo",
+    "name": "speed_bi",
+    "short_name": "speed_bi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

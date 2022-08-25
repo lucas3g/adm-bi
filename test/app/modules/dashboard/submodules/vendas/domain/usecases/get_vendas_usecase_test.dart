@@ -1,7 +1,7 @@
-import 'package:app_demonstrativo/app/core_module/types/either.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/entities/vendas_entity.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
+import 'package:speed_bi/app/core_module/types/either.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/entities/vendas_entity.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,5 +1,5 @@
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
-import 'package:app_demonstrativo/app/utils/navigation_service.dart';
+import 'package:speed_bi/app/theme/app_theme.dart';
+import 'package:speed_bi/app/utils/navigation_service.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';

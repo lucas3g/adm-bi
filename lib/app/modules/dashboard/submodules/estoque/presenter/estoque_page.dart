@@ -1,18 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
-import 'package:app_demonstrativo/app/components/my_input_widget.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/presenter/blocs/events/estoque_events.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/presenter/blocs/states/estoque_states.dart';
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
-import 'package:app_demonstrativo/app/utils/formatters.dart';
-import 'package:app_demonstrativo/app/utils/loading_widget.dart';
-import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
+import 'package:speed_bi/app/components/my_input_widget.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/estoque/presenter/blocs/events/estoque_events.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/estoque/presenter/blocs/states/estoque_states.dart';
+import 'package:speed_bi/app/theme/app_theme.dart';
+import 'package:speed_bi/app/utils/formatters.dart';
+import 'package:speed_bi/app/utils/loading_widget.dart';
+import 'package:speed_bi/app/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/estoque/presenter/blocs/estoque_bloc.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/estoque/presenter/blocs/estoque_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

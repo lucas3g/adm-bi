@@ -1,5 +1,5 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cr/domain/entities/cr_entity.dart';
-import 'package:app_demonstrativo/app/utils/formatters.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cr/domain/entities/cr_entity.dart';
+import 'package:speed_bi/app/utils/formatters.dart';
 
 abstract class CRStates {
   final List<CR> crs;

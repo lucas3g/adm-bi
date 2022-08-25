@@ -1,6 +1,6 @@
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/domain/usecases/get_resumo_cp_usecase.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/events/cp_events.dart';
-import 'package:app_demonstrativo/app/modules/dashboard/submodules/cp/presenter/blocs/states/cp_states.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/usecases/get_resumo_cp_usecase.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/presenter/blocs/events/cp_events.dart';
+import 'package:speed_bi/app/modules/dashboard/submodules/cp/presenter/blocs/states/cp_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CPBloc extends Bloc<CPEvents, CPStates> {

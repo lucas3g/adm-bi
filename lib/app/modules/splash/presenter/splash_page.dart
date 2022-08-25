@@ -1,20 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/info_device_events.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/info_device_states.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
-import 'package:app_demonstrativo/app/utils/constants.dart';
-import 'package:app_demonstrativo/app/utils/my_snackbar.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/events/info_device_events.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/states/info_device_states.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
+import 'package:speed_bi/app/utils/constants.dart';
+import 'package:speed_bi/app/utils/my_snackbar.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:app_demonstrativo/app/app_module.dart';
-import 'package:app_demonstrativo/app/core_module/services/shared_preferences/local_storage_interface.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/info_device_bloc.dart';
-import 'package:app_demonstrativo/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
+import 'package:speed_bi/app/app_module.dart';
+import 'package:speed_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/info_device_bloc.dart';
+import 'package:speed_bi/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SplashPage extends StatefulWidget {

@@ -1,8 +1,8 @@
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/events/ccusto_event.dart';
-import 'package:app_demonstrativo/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
-import 'package:app_demonstrativo/app/theme/app_theme.dart';
-import 'package:app_demonstrativo/app/utils/loading_widget.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/events/ccusto_event.dart';
+import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
+import 'package:speed_bi/app/theme/app_theme.dart';
+import 'package:speed_bi/app/utils/loading_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
