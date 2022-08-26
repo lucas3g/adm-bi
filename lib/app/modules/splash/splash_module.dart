@@ -1,12 +1,12 @@
-import 'package:speed_bi/app/modules/auth/domain/usecases/get_infos_device_usecase.dart';
-import 'package:speed_bi/app/modules/auth/domain/usecases/verify_license_usecase.dart';
-import 'package:speed_bi/app/modules/auth/external/datasources/auth_datasource.dart';
-import 'package:speed_bi/app/modules/auth/external/datasources/get_info_device_datasource.dart';
-import 'package:speed_bi/app/modules/auth/infra/repositories/auth_repository.dart';
-import 'package:speed_bi/app/modules/auth/infra/repositories/info_device_repository.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/info_device_bloc.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
-import 'package:speed_bi/app/modules/splash/presenter/splash_page.dart';
+import 'package:adm_bi/app/modules/auth/domain/usecases/get_infos_device_usecase.dart';
+import 'package:adm_bi/app/modules/auth/domain/usecases/verify_license_usecase.dart';
+import 'package:adm_bi/app/modules/auth/external/datasources/auth_datasource.dart';
+import 'package:adm_bi/app/modules/auth/external/datasources/get_info_device_datasource.dart';
+import 'package:adm_bi/app/modules/auth/infra/repositories/auth_repository.dart';
+import 'package:adm_bi/app/modules/auth/infra/repositories/info_device_repository.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/info_device_bloc.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
+import 'package:adm_bi/app/modules/splash/presenter/splash_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 

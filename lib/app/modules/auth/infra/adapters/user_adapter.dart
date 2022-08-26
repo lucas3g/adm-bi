@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/auth/domain/entities/user_entity.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/user_entity.dart';
 
 class UserAdapter {
   static Map<String, dynamic> toMap(User user) {

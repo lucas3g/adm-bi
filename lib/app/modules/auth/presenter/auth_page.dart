@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-import 'dart:io';
 
-import 'package:speed_bi/app/modules/auth/domain/entities/info_device_entity.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/events/info_device_events.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/states/info_device_states.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/info_device_entity.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/events/info_device_events.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/events/verify_license_events.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/states/info_device_states.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/states/verify_license_states.dart';
 import 'package:asuka/asuka.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
@@ -14,21 +13,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:speed_bi/app/components/my_input_widget.dart';
-import 'package:speed_bi/app/core_module/services/shared_preferences/adapters/shared_params.dart';
-import 'package:speed_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
-import 'package:speed_bi/app/modules/auth/domain/entities/user_entity.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/auth_bloc.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/events/auth_events.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/info_device_bloc.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/states/auth_states.dart';
-import 'package:speed_bi/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
-import 'package:speed_bi/app/theme/app_theme.dart';
-import 'package:speed_bi/app/utils/constants.dart';
-import 'package:speed_bi/app/utils/formatters.dart';
-import 'package:speed_bi/app/utils/my_snackbar.dart';
+import 'package:adm_bi/app/components/my_input_widget.dart';
+import 'package:adm_bi/app/core_module/services/shared_preferences/adapters/shared_params.dart';
+import 'package:adm_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/user_entity.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/auth_bloc.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/events/auth_events.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/info_device_bloc.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/states/auth_states.dart';
+import 'package:adm_bi/app/modules/auth/presenter/blocs/verify_license_bloc.dart';
+import 'package:adm_bi/app/theme/app_theme.dart';
+import 'package:adm_bi/app/utils/constants.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/utils/my_snackbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_share2/whatsapp_share2.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthBloc authBloc;
@@ -138,31 +137,20 @@ class _AuthPageState extends State<AuthPage> {
         });
   }
 
-  Future<void> openWhatsapp(
-      {required BuildContext context,
-      required String text,
-      required String number}) async {
-    var whatsapp = number; //+92xx enter like this
-    var whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=$text";
-    var whatsappURLIos = "https://wa.me/$whatsapp?text=${Uri.tryParse(text)}";
-    if (Platform.isIOS) {
-      // for iOS phone only
-      if (await canLaunchUrl(Uri.parse(whatsappURLIos))) {
-        await launchUrl(
-          Uri.parse(
-            whatsappURLIos,
-          ),
-        );
-      } else {
-        MySnackBar(message: "Whatsapp não está instalado");
-      }
+  Future<void> openWhatsapp({
+    required BuildContext context,
+    required String text,
+    required String number,
+  }) async {
+    final wpp = await WhatsappShare.isInstalled(package: Package.whatsapp);
+
+    final business =
+        await WhatsappShare.isInstalled(package: Package.businessWhatsapp);
+
+    if (wpp! || business!) {
+      await WhatsappShare.share(text: text, phone: number);
     } else {
-      // android , web
-      if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
-        await launchUrl(Uri.parse(whatsappURlAndroid));
-      } else {
-        MySnackBar(message: "Whatsapp não está instalado");
-      }
+      MySnackBar(message: "Whatsapp não está instalado");
     }
   }
 
@@ -246,6 +234,15 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   @override
+  void dispose() {
+    fCnpj.removeListener(() {});
+    fUser.removeListener(() {});
+    fPassword.removeListener(() {});
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -263,7 +260,7 @@ class _AuthPageState extends State<AuthPage> {
               children: [
                 const SizedBox(),
                 SvgPicture.asset(
-                  'assets/images/speed.svg',
+                  'assets/images/admbi.svg',
                   width: context.screenWidth * .90,
                 ),
                 Column(

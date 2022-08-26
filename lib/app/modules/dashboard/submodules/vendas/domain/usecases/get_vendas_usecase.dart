@@ -1,7 +1,7 @@
-import 'package:speed_bi/app/core_module/types/either.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/entities/vendas_entity.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/exceptions/vendas_exception.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
+import 'package:adm_bi/app/core_module/types/either.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/entities/vendas_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/exceptions/vendas_exception.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/repositories/vendas_repository.dart';
 
 abstract class IGetVendasUseCase {
   Future<Either<IVendasException, List<Vendas>>> call();

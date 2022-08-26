@@ -1,7 +1,7 @@
-import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/grafico_states.dart';
+import 'package:adm_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/usecases/get_vendas_grafico_usecase.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/grafico_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

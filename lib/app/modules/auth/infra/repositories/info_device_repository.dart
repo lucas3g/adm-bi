@@ -1,9 +1,9 @@
-import 'package:speed_bi/app/core_module/types/either.dart';
-import 'package:speed_bi/app/modules/auth/domain/entities/info_device_entity.dart';
-import 'package:speed_bi/app/modules/auth/domain/exceptions/info_device_exception.dart';
-import 'package:speed_bi/app/modules/auth/domain/repositories/info_device_repository_interface.dart';
-import 'package:speed_bi/app/modules/auth/infra/adapters/info_device_adapter.dart';
-import 'package:speed_bi/app/modules/auth/infra/datasources/info_device_datasource_interface.dart';
+import 'package:adm_bi/app/core_module/types/either.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/info_device_entity.dart';
+import 'package:adm_bi/app/modules/auth/domain/exceptions/info_device_exception.dart';
+import 'package:adm_bi/app/modules/auth/domain/repositories/info_device_repository_interface.dart';
+import 'package:adm_bi/app/modules/auth/infra/adapters/info_device_adapter.dart';
+import 'package:adm_bi/app/modules/auth/infra/datasources/info_device_datasource_interface.dart';
 
 class InfoDeviceRepository implements IInfoDeviceRepository {
   final IInfoDeviceDataSource infoDeviceDataSource;

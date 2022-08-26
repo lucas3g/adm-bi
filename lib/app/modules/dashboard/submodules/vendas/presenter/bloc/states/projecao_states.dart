@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/entities/projecao_vendas.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/entities/projecao_vendas.dart';
 
 abstract class ProjecaoStates {
   final List<ProjecaoVendas> projecao;

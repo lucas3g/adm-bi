@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/auth/domain/entities/info_device_entity.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/info_device_entity.dart';
 
 class InfoDeviceAdapter {
   static InfoDeviceEntity fromMap(Map map) {

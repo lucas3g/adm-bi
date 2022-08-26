@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:speed_bi/app/theme/app_theme.dart';
+import 'package:adm_bi/app/theme/app_theme.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +29,7 @@ class MyInputWidget extends StatefulWidget {
   final bool expands;
   final TextInputAction? textInputAction;
   final TextAlignVertical? textAlignVertical;
+  final double? maxWidth;
 
   const MyInputWidget({
     Key? key,
@@ -55,6 +56,7 @@ class MyInputWidget extends StatefulWidget {
     this.expands = false,
     this.textInputAction,
     this.textAlignVertical = TextAlignVertical.center,
+    this.maxWidth,
   }) : super(key: key);
 
   @override
@@ -67,56 +69,61 @@ class _MyInputWidgetState extends State<MyInputWidget> {
     return Form(
       key: widget.formKey,
       autovalidateMode: widget.autovalidateMode ?? AutovalidateMode.disabled,
-      child: TextFormField(
-        textAlignVertical: widget.textAlignVertical!,
-        expands: widget.expands,
-        maxLines: widget.maxLines,
-        minLines: widget.minLines,
-        readOnly: widget.readOnly,
-        onEditingComplete: widget.onEditingComplete,
-        textCapitalization: widget.textCapitalization,
-        textInputAction: widget.textInputAction,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return widget.campoVazio ?? '${widget.label} em branco';
-          }
-          if (widget.label == 'CNPJ' && !CNPJValidator.isValid(value)) {
-            return 'CNPJ inválido';
-          }
-          return null;
-        },
-        focusNode: widget.focusNode,
-        keyboardType: widget.keyboardType,
-        onChanged: (value) {
-          if (widget.onChanged != null) {
-            widget.onChanged!(value);
-            setState(() {});
-          }
-        },
-        onTap: widget.onTap,
-        obscureText: widget.obscureText,
-        inputFormatters: widget.inputFormaters,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        maxLength: widget.maxLength,
-        controller: widget.textEditingController,
-        decoration: InputDecoration(
-          counterText: '',
-          hintText: widget.hintText,
-          label: Text(widget.label),
-          suffixIcon: widget.suffixIcon,
-          filled: true,
-          isDense: true,
-          fillColor: Colors.transparent,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: Colors.grey.shade700,
+      child: Container(
+        constraints: BoxConstraints(
+          maxWidth: widget.maxWidth ?? double.infinity,
+        ),
+        child: TextFormField(
+          textAlignVertical: widget.textAlignVertical!,
+          expands: widget.expands,
+          maxLines: widget.maxLines,
+          minLines: widget.minLines,
+          readOnly: widget.readOnly,
+          onEditingComplete: widget.onEditingComplete,
+          textCapitalization: widget.textCapitalization,
+          textInputAction: widget.textInputAction,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return widget.campoVazio ?? '${widget.label} em branco';
+            }
+            if (widget.label == 'CNPJ' && !CNPJValidator.isValid(value)) {
+              return 'CNPJ inválido';
+            }
+            return null;
+          },
+          focusNode: widget.focusNode,
+          keyboardType: widget.keyboardType,
+          onChanged: (value) {
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+              setState(() {});
+            }
+          },
+          onTap: widget.onTap,
+          obscureText: widget.obscureText,
+          inputFormatters: widget.inputFormaters,
+          onFieldSubmitted: widget.onFieldSubmitted,
+          maxLength: widget.maxLength,
+          controller: widget.textEditingController,
+          decoration: InputDecoration(
+            counterText: '',
+            hintText: widget.hintText,
+            label: Text(widget.label),
+            suffixIcon: widget.suffixIcon,
+            filled: true,
+            isDense: true,
+            fillColor: Colors.transparent,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: Colors.grey.shade700,
+              ),
             ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: AppTheme.colors.primary,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: AppTheme.colors.primary,
+              ),
             ),
           ),
         ),

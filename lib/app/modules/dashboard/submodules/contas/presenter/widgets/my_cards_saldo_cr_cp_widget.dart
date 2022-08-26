@@ -1,5 +1,5 @@
-import 'package:speed_bi/app/theme/app_theme.dart';
-import 'package:speed_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/theme/app_theme.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
 import 'package:flutter/material.dart';
 
 class MyCardsSaldoCRCP extends StatefulWidget {

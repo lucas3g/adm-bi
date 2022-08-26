@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/grafico_states.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/projecao_states.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/body_vendas_widget.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/bottom_vendas_widget.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/header_vendas_widget.dart';
-import 'package:speed_bi/app/utils/my_snackbar.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/grafico_states.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/projecao_states.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/body_vendas_widget.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/bottom_vendas_widget.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/widgets/header_vendas_widget.dart';
+import 'package:adm_bi/app/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 
 class VendasPage extends StatefulWidget {

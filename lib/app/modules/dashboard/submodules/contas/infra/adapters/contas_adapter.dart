@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/contas/domain/entities/contas_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/contas/domain/entities/contas_entity.dart';
 
 class ContasAdapter {
   static Contas fromMap(dynamic map) {

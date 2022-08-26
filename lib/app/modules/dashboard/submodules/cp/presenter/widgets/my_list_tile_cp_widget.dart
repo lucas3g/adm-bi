@@ -1,6 +1,6 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
-import 'package:speed_bi/app/theme/app_theme.dart';
-import 'package:speed_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
+import 'package:adm_bi/app/theme/app_theme.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
 import 'package:flutter/material.dart';
 
 class MyListTileCPWidget extends StatefulWidget {

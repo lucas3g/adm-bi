@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
 
 class CPAdapter {
   static CP fromMap(dynamic map) {

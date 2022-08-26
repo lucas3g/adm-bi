@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/utils/constants.dart';
+import 'package:adm_bi/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utils/loading_widget.dart';

@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:speed_bi/app/core_module/types/either.dart';
-import 'package:speed_bi/app/modules/auth/domain/entities/user_entity.dart';
-import 'package:speed_bi/app/modules/auth/domain/entities/verify_license_entity.dart';
-import 'package:speed_bi/app/modules/auth/domain/exceptions/auth_exception.dart';
-import 'package:speed_bi/app/modules/auth/domain/repositories/auth_repository.dart';
-import 'package:speed_bi/app/modules/auth/infra/adapters/user_adapter.dart';
-import 'package:speed_bi/app/modules/auth/infra/adapters/verify_license_adapter.dart';
-import 'package:speed_bi/app/modules/auth/infra/datasources/auth_datasource.dart';
+import 'package:adm_bi/app/core_module/types/either.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/user_entity.dart';
+import 'package:adm_bi/app/modules/auth/domain/entities/verify_license_entity.dart';
+import 'package:adm_bi/app/modules/auth/domain/exceptions/auth_exception.dart';
+import 'package:adm_bi/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:adm_bi/app/modules/auth/infra/adapters/user_adapter.dart';
+import 'package:adm_bi/app/modules/auth/infra/adapters/verify_license_adapter.dart';
+import 'package:adm_bi/app/modules/auth/infra/datasources/auth_datasource.dart';
 import 'package:dio/dio.dart';
 
 class AuthRepository implements IAuthRepository {

@@ -1,5 +1,5 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/estoque/domain/entities/estoque_entity.dart';
-import 'package:speed_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/estoque/domain/entities/estoque_entity.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
 
 abstract class EstoqueStates {
   final List<Estoque> estoques;

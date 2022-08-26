@@ -1,4 +1,4 @@
-name: speed_bi
+name: adm_bi
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+5
+version: 1.0.0+6
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -51,6 +51,7 @@ dependencies:
   modular_bloc_bind: ^1.0.1
   platform_device_id: ^1.0.1
   url_launcher: ^6.1.5
+  whatsapp_share2: ^2.0.2
 
 dev_dependencies:
   flutter_test:

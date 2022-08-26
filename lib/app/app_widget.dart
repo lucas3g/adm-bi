@@ -1,5 +1,5 @@
-import 'package:speed_bi/app/theme/app_theme.dart';
-import 'package:speed_bi/app/utils/navigation_service.dart';
+import 'package:adm_bi/app/theme/app_theme.dart';
+import 'package:adm_bi/app/utils/navigation_service.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
     ]);
 
     return MaterialApp.router(
-      title: 'Speed BI',
+      title: 'ADM BI',
       builder: (context, widget) {
         widget = Asuka.builder(context, widget);
         widget = BotToastInit()(context, widget);

@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
+import 'package:adm_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:speed_bi/app/modules/dashboard/submodules/resumo_formas/domain/usecases/get_resumo_formas_pag_usecase.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/events/formas_pag_events.dart';
-import 'package:speed_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/states/formas_pag_states.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/domain/usecases/get_resumo_formas_pag_usecase.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/events/formas_pag_events.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/states/formas_pag_states.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class FormasPagBloc extends Bloc<FormasPagEvents, FormasPagStates> {

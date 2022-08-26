@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/vendas/domain/entities/grafico_vendas.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/domain/entities/grafico_vendas.dart';
 
 class VendasGraficoAdapter {
   static GraficoVendas fromMap(dynamic map) {

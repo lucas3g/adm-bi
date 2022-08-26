@@ -2,10 +2,10 @@
 
 import 'dart:convert';
 
-import 'package:speed_bi/app/core_module/constants/constants.dart';
-import 'package:speed_bi/app/core_module/services/client_http/client_http_interface.dart';
-import 'package:speed_bi/app/modules/auth/domain/exceptions/auth_exception.dart';
-import 'package:speed_bi/app/modules/auth/infra/datasources/auth_datasource.dart';
+import 'package:adm_bi/app/core_module/constants/constants.dart';
+import 'package:adm_bi/app/core_module/services/client_http/client_http_interface.dart';
+import 'package:adm_bi/app/modules/auth/domain/exceptions/auth_exception.dart';
+import 'package:adm_bi/app/modules/auth/infra/datasources/auth_datasource.dart';
 
 class AuthDataSource implements IAuthDataSource {
   final IClientHttp clientHttp;

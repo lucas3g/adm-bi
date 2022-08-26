@@ -1,4 +1,4 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/resumo_formas/domain/entities/formas_pag_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/domain/entities/formas_pag_entity.dart';
 
 class FormasPagAdapter {
   static FormasPag fromMap(dynamic map) {

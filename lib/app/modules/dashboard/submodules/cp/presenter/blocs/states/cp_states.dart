@@ -1,5 +1,5 @@
-import 'package:speed_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
-import 'package:speed_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
 
 abstract class CPStates {
   final List<CP> cps;

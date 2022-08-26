@@ -1,6 +1,6 @@
-import 'package:speed_bi/app/components/drop_down_widget/domain/usecases/get_ccustos_usecase.dart';
-import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/events/ccusto_event.dart';
-import 'package:speed_bi/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
+import 'package:adm_bi/app/components/drop_down_widget/domain/usecases/get_ccustos_usecase.dart';
+import 'package:adm_bi/app/components/drop_down_widget/presenter/bloc/events/ccusto_event.dart';
+import 'package:adm_bi/app/components/drop_down_widget/presenter/bloc/states/ccusto_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CCustoBloc extends Bloc<CCustoEvents, CCustoStates> {
