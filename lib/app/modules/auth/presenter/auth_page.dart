@@ -122,7 +122,7 @@ class _AuthPageState extends State<AuthPage> {
                             context: context,
                             text:
                                 'Código para Licença App DashBoard: ${_infoDeviceEntity.id}',
-                            number: '+5554999712433',
+                            number: '+55 054-99971-2433',
                           );
                         },
                         icon: const Icon(Icons.whatsapp_rounded),
@@ -147,7 +147,11 @@ class _AuthPageState extends State<AuthPage> {
     final business = await shareWhatsapp.installed(type: WhatsApp.business);
 
     if (wpp || business) {
-      await shareWhatsapp.shareText(text, phone: number);
+      await shareWhatsapp.shareText(
+        text,
+        phone: number,
+        type: wpp ? WhatsApp.standard : WhatsApp.business,
+      );
     } else {
       MySnackBar(message: "Whatsapp não está instalado");
     }
