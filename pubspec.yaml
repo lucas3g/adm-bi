@@ -51,7 +51,7 @@ dependencies:
   modular_bloc_bind: ^1.0.1
   platform_device_id: ^1.0.1
   url_launcher: ^6.1.5
-  whatsapp_share2: ^2.0.2
+  share_whatsapp: ^1.0.2
 
 dev_dependencies:
   flutter_test:
