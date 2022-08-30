@@ -24,7 +24,9 @@ class VendasDataSource implements IVendasDataSource {
       throw const VendasException(message: 'Erro ao buscar vendas na API');
     }
 
-    return jsonDecode(response.data);
+    Global.ultimaSinc = DateTime.parse(jsonDecode(response.data)['data']);
+
+    return jsonDecode(response.data)['dados'];
   }
 
   @override

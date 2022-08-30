@@ -1,11 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:adm_bi/app/components/drop_down_widget/presenter/bloc/ccusto_bloc.dart';
 import 'package:adm_bi/app/components/drop_down_widget/presenter/drop_down_widget.dart';
 import 'package:adm_bi/app/components/my_elevated_button_widget.dart';
 import 'package:adm_bi/app/components/my_title_app_bar_widget.dart';
+import 'package:adm_bi/app/core_module/constants/constants.dart';
 import 'package:adm_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
@@ -22,11 +24,15 @@ import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/ev
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
 import 'package:adm_bi/app/theme/app_theme.dart';
 import 'package:adm_bi/app/utils/constants.dart';
+import 'package:adm_bi/app/utils/formatters.dart';
+import 'package:adm_bi/app/utils/loading_widget.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -43,11 +49,15 @@ class DashBoardPage extends StatefulWidget {
 
 class _DashBoardPageState extends State<DashBoardPage> {
   late int _currentIndex = 0;
+  late String ultimaSinc = '';
+  late VendasBloc vendasBloc;
 
   @override
   void initState() {
     super.initState();
     Modular.to.pushNamed('./vendas/');
+
+    vendasBloc = Modular.get<VendasBloc>();
   }
 
   void confirmarSair() {
@@ -253,60 +263,83 @@ class _DashBoardPageState extends State<DashBoardPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: CurvedNavigationBar(
-          index: _currentIndex,
-          color: AppTheme.colors.primary,
-          backgroundColor: Colors.white,
-          height: 60,
-          items: [
-            Icon(
-              _currentIndex == 0
-                  ? Icons.attach_money_rounded
-                  : Icons.attach_money_outlined,
-              size: 30,
-              color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BlocBuilder<VendasBloc, VendasStates>(
+              bloc: vendasBloc,
+              builder: (context, state) {
+                if (state is! VendasSuccessState) {
+                  return LoadingWidget(
+                    size: Size(context.screenWidth * .5, 20),
+                    radius: 10,
+                  );
+                }
+
+                return Text(
+                  'Ultima sincronização: ${Global.ultimaSinc.DiaMesAnoHora()}',
+                );
+              },
             ),
-            Icon(
-              _currentIndex == 1
-                  ? Icons.analytics_rounded
-                  : Icons.analytics_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              _currentIndex == 2
-                  ? Icons.receipt_long
-                  : Icons.receipt_long_rounded,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              _currentIndex == 3
-                  ? Icons.call_received
-                  : Icons.call_received_rounded,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              _currentIndex == 4 ? Icons.call_made : Icons.call_made_rounded,
-              size: 30,
-              color: Colors.white,
-            ),
-            Icon(
-              _currentIndex == 5
-                  ? Icons.inventory_2_rounded
-                  : Icons.inventory_2_outlined,
-              size: 30,
-              color: Colors.white,
+            const SizedBox(height: 10),
+            CurvedNavigationBar(
+              index: _currentIndex,
+              color: AppTheme.colors.primary,
+              backgroundColor: Colors.white,
+              height: 60,
+              items: [
+                Icon(
+                  _currentIndex == 0
+                      ? Icons.attach_money_rounded
+                      : Icons.attach_money_outlined,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                Icon(
+                  _currentIndex == 1
+                      ? Icons.analytics_rounded
+                      : Icons.analytics_outlined,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                Icon(
+                  _currentIndex == 2
+                      ? Icons.receipt_long
+                      : Icons.receipt_long_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                Icon(
+                  _currentIndex == 3
+                      ? Icons.call_received
+                      : Icons.call_received_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                Icon(
+                  _currentIndex == 4
+                      ? Icons.call_made
+                      : Icons.call_made_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                Icon(
+                  _currentIndex == 5
+                      ? Icons.inventory_2_rounded
+                      : Icons.inventory_2_outlined,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ],
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+
+                navigation();
+              },
             ),
           ],
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-
-            navigation();
-          },
         ),
       ),
     );
