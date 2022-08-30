@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
 import 'dart:async';
 
 import 'package:adm_bi/app/modules/auth/domain/entities/info_device_entity.dart';
@@ -28,6 +28,7 @@ import 'package:adm_bi/app/utils/formatters.dart';
 import 'package:adm_bi/app/utils/my_snackbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_whatsapp/share_whatsapp.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthBloc authBloc;
@@ -122,7 +123,7 @@ class _AuthPageState extends State<AuthPage> {
                             context: context,
                             text:
                                 'Código para Licença App DashBoard: ${_infoDeviceEntity.id}',
-                            number: '+55 054-99971-2433',
+                            number: '+5554999712433',
                           );
                         },
                         icon: const Icon(Icons.whatsapp_rounded),
@@ -147,11 +148,18 @@ class _AuthPageState extends State<AuthPage> {
     final business = await shareWhatsapp.installed(type: WhatsApp.business);
 
     if (wpp || business) {
-      await shareWhatsapp.shareText(
-        text,
-        phone: number,
-        type: wpp ? WhatsApp.standard : WhatsApp.business,
+      final FlutterShareMe flutterShareMe = FlutterShareMe();
+
+      await flutterShareMe.shareWhatsAppPersonalMessage(
+        message: text,
+        phoneNumber: number,
       );
+
+      // await shareWhatsapp.shareText(
+      //   text,
+      //   phone: number,
+      //   type: wpp ? WhatsApp.standard : WhatsApp.business,
+      // );
     } else {
       MySnackBar(message: "Whatsapp não está instalado");
     }
@@ -243,6 +251,66 @@ class _AuthPageState extends State<AuthPage> {
     fPassword.removeListener(() {});
 
     super.dispose();
+  }
+
+  void mostraDialogDemonstracao() {
+    Asuka.showDialog(
+        barrierColor: Colors.black.withOpacity(0.1),
+        builder: (_) {
+          return AlertDialog(
+            elevation: 8,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Atenção',
+                  style: AppTheme.textStyles.titleDialog,
+                ),
+                const Divider(),
+                Text(
+                  'Você irá iniciar uma versão de demonstração os dados são meramente fictícios.',
+                  style: AppTheme.textStyles.textDialog,
+                  textAlign: TextAlign.center,
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+                        },
+                        icon: const Icon(
+                          Icons.cancel_rounded,
+                        ),
+                        label: const Text('Não'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+
+                          await widget.localStorage.setData(
+                            params:
+                                SharedParams(key: 'CNPJ', value: '97305890'),
+                          );
+
+                          Modular.to.navigate('/dash/');
+                        },
+                        icon: const Icon(Icons.done_rounded),
+                        label: const Text('Iniciar'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -438,7 +506,14 @@ class _AuthPageState extends State<AuthPage> {
                         await mostraDialogCodigo(_infoDeviceEntity);
                       },
                       child: const Text('Licença para acessar'),
-                    )
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        mostraDialogDemonstracao();
+                      },
+                      child: const Text('Versão de demonstração'),
+                    ),
                   ],
                 ),
                 Text(

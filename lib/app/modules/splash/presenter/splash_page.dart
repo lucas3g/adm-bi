@@ -50,6 +50,11 @@ class _SplashPageState extends State<SplashPage> {
 
     final localStorage = Modular.get<ILocalStorage>();
 
+    if (localStorage.getData('CNPJ') != null &&
+        localStorage.getData('CNPJ') == '97305890') {
+      await localStorage.removeData('CNPJ');
+    }
+
     if (localStorage.getData('LICENCA') != null) {
       id = localStorage.getData('LICENCA');
     }

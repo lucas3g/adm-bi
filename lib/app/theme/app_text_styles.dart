@@ -6,6 +6,8 @@ import 'app_theme.dart';
 abstract class AppTextStyles {
   TextStyle get button;
   TextStyle get titleAppBar;
+  TextStyle get titleDialog;
+  TextStyle get textDialog;
   TextStyle get titleSplash;
   TextStyle get titleNumeroViagem;
   TextStyle get titleEstoque;
@@ -181,5 +183,20 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 14,
         color: AppTheme.colors.primary,
         fontWeight: FontWeight.bold,
+      );
+
+  @override
+  TextStyle get titleDialog => GoogleFonts.montserrat(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        decoration: TextDecoration.none,
+      );
+
+  @override
+  TextStyle get textDialog => GoogleFonts.montserrat(
+        fontSize: 14,
+        color: Colors.black,
+        decoration: TextDecoration.none,
       );
 }
