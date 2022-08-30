@@ -42,6 +42,7 @@ class DashBoardController {
 
       Modular.to.pushReplacementNamed('../vendas/');
     }
+
     if (index == 1) {
       if (Modular.get<ContasBloc>().state.filtredList.isEmpty) {
         Modular.get<ContasBloc>().add(GetContasEvent());
@@ -55,6 +56,7 @@ class DashBoardController {
       }
       Modular.to.pushReplacementNamed('../contas/');
     }
+
     if (index == 2) {
       if (Modular.get<FormasPagBloc>().state.filtredList.isEmpty) {
         Modular.get<FormasPagBloc>().add(GetFormasPagEvent());
@@ -63,6 +65,7 @@ class DashBoardController {
       }
       Modular.to.pushReplacementNamed('../resumo_fp/');
     }
+
     if (index == 3) {
       if (Modular.get<CRBloc>().state.filtredList.isEmpty) {
         Modular.get<CRBloc>().add(GetCREvent());
@@ -71,6 +74,7 @@ class DashBoardController {
       }
       Modular.to.pushReplacementNamed('../cr/');
     }
+
     if (index == 4) {
       if (Modular.get<CPBloc>().state.filtredList.isEmpty) {
         Modular.get<CPBloc>().add(GetCPEvent());
@@ -79,6 +83,7 @@ class DashBoardController {
       }
       Modular.to.pushReplacementNamed('../cp/');
     }
+
     if (index == 5) {
       if (Modular.get<EstoqueBloc>().state.filtredList.isEmpty) {
         Modular.get<EstoqueBloc>().add(GetEstoqueMinimoEvent());
