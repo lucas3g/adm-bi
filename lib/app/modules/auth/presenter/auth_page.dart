@@ -28,7 +28,6 @@ import 'package:adm_bi/app/utils/formatters.dart';
 import 'package:adm_bi/app/utils/my_snackbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_whatsapp/share_whatsapp.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthBloc authBloc;
@@ -148,18 +147,11 @@ class _AuthPageState extends State<AuthPage> {
     final business = await shareWhatsapp.installed(type: WhatsApp.business);
 
     if (wpp || business) {
-      final FlutterShareMe flutterShareMe = FlutterShareMe();
-
-      await flutterShareMe.shareWhatsAppPersonalMessage(
-        message: text,
-        phoneNumber: number,
+      await shareWhatsapp.shareText(
+        text,
+        phone: number,
+        type: wpp ? WhatsApp.standard : WhatsApp.business,
       );
-
-      // await shareWhatsapp.shareText(
-      //   text,
-      //   phone: number,
-      //   type: wpp ? WhatsApp.standard : WhatsApp.business,
-      // );
     } else {
       MySnackBar(message: "Whatsapp não está instalado");
     }
