@@ -9,21 +9,7 @@ import 'package:adm_bi/app/components/my_elevated_button_widget.dart';
 import 'package:adm_bi/app/components/my_title_app_bar_widget.dart';
 import 'package:adm_bi/app/core_module/constants/constants.dart';
 import 'package:adm_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/contas/presenter/blocs/contas_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/contas/presenter/blocs/events/contas_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/cp/presenter/blocs/cp_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/cp/presenter/blocs/events/cp_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/cr/presenter/blocs/cr_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/cr/presenter/blocs/events/cr_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/estoque/presenter/blocs/estoque_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/estoque/presenter/blocs/events/estoque_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/events/formas_pag_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/presenter/blocs/formas_pag_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/grafico_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/projecao_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/events/vendas_events.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/grafico_bloc.dart';
-import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/projecao_bloc.dart';
+import 'package:adm_bi/app/modules/dashboard/presenter/controllers/dashboard_controller.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
 import 'package:adm_bi/app/theme/app_theme.dart';
@@ -131,7 +117,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   _appBar(height) => PreferredSize(
         preferredSize: Size(
-          MediaQuery.of(context).size.width,
+          context.screenWidth,
           height +
               (Platform.isWindows
                   ? 65
@@ -180,78 +166,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
           ],
         ),
       );
-
-  navigation() {
-    final ccusto = Modular.get<CCustoBloc>().state.selectedEmpresa;
-
-    if (_currentIndex == 0) {
-      if (Modular.get<VendasBloc>().state.filtredList.isEmpty) {
-        Modular.get<VendasBloc>().add(GetVendasEvent());
-      } else {
-        Modular.get<VendasBloc>().add(VendasFilterEvent(ccusto: ccusto));
-      }
-
-      if (Modular.get<ProjecaoBloc>().state.filtredList.isEmpty) {
-        Modular.get<ProjecaoBloc>().add(GetProjecaoEvent());
-      } else {
-        Modular.get<ProjecaoBloc>().add(ProjecaoFilterEvent(ccusto: ccusto));
-      }
-
-      if (Modular.get<GraficoBloc>().state.filtredList.isEmpty) {
-        Modular.get<GraficoBloc>().add(GetGraficoEvent());
-      } else {
-        Modular.get<GraficoBloc>().add(GraficoFilterEvent(ccusto: ccusto));
-      }
-
-      Modular.to.pushReplacementNamed('../vendas/');
-    }
-    if (_currentIndex == 1) {
-      if (Modular.get<ContasBloc>().state.filtredList.isEmpty) {
-        Modular.get<ContasBloc>().add(GetContasEvent());
-      } else {
-        Modular.get<ContasBloc>().add(
-          ContasFilterEvent(
-            ccusto: ccusto,
-            diaSemanaMes: 'Dia',
-          ),
-        );
-      }
-      Modular.to.pushReplacementNamed('../contas/');
-    }
-    if (_currentIndex == 2) {
-      if (Modular.get<FormasPagBloc>().state.filtredList.isEmpty) {
-        Modular.get<FormasPagBloc>().add(GetFormasPagEvent());
-      } else {
-        Modular.get<FormasPagBloc>().add(FilterFormasPag(ccusto: ccusto));
-      }
-      Modular.to.pushReplacementNamed('../resumo_fp/');
-    }
-    if (_currentIndex == 3) {
-      if (Modular.get<CRBloc>().state.filtredList.isEmpty) {
-        Modular.get<CRBloc>().add(GetCREvent());
-      } else {
-        Modular.get<CRBloc>().add(CRFilterEvent(ccusto: ccusto, filtro: ''));
-      }
-      Modular.to.pushReplacementNamed('../cr/');
-    }
-    if (_currentIndex == 4) {
-      if (Modular.get<CPBloc>().state.filtredList.isEmpty) {
-        Modular.get<CPBloc>().add(GetCPEvent());
-      } else {
-        Modular.get<CPBloc>().add(CPFilterEvent(ccusto: ccusto, filtro: ''));
-      }
-      Modular.to.pushReplacementNamed('../cp/');
-    }
-    if (_currentIndex == 5) {
-      if (Modular.get<EstoqueBloc>().state.filtredList.isEmpty) {
-        Modular.get<EstoqueBloc>().add(GetEstoqueMinimoEvent());
-      } else {
-        Modular.get<EstoqueBloc>()
-            .add(EstoqueFilterEvent(ccusto: ccusto, filtro: ''));
-      }
-      Modular.to.pushReplacementNamed('../estoque/');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -336,7 +250,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   _currentIndex = index;
                 });
 
-                navigation();
+                DashBoardController.navigation(index);
               },
             ),
           ],
