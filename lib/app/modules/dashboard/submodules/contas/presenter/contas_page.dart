@@ -211,7 +211,11 @@ class _ContasPageState extends State<ContasPage> {
                           crossAxisCount: 2,
                           childAspectRatio: 1.7,
                         ),
-                        itemCount: contas.length,
+                        itemCount: diaSemanaMes == 'Dia'
+                            ? contas.where((e) => e.totalDiario > 0).length
+                            : diaSemanaMes == 'Semana'
+                                ? contas.where((e) => e.totalSemanal > 0).length
+                                : contas.where((e) => e.totalMes > 0).length,
                         itemBuilder: (context, index) {
                           return MyCardsSaldoCRCP(
                             backGroundColor: Color(contas[index].cardColor),
