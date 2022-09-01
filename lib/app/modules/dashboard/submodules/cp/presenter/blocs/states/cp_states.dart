@@ -1,4 +1,5 @@
 import 'package:adm_bi/app/modules/dashboard/submodules/cp/domain/entities/cp_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/cp/infra/adapters/cp_adapter.dart';
 import 'package:adm_bi/app/utils/formatters.dart';
 
 abstract class CPStates {
@@ -52,6 +53,37 @@ abstract class CPStates {
             (cp) => (cp.ccusto == ccusto),
           )
           .toList();
+    }
+
+    if (ccusto == -1) {
+      List<Map<String, dynamic>>? listCP = [];
+
+      for (var cp in cps) {
+        if (listCP.map((e) => e['NOME']).contains(cp.nome)) {
+          listCP[listCP.indexWhere((e) => e['NOME'] == cp.nome)]["TOTAL"] +=
+              cp.valor;
+        } else {
+          listCP.add(
+            {
+              "CCUSTO": cp.ccusto,
+              "NOME": cp.nome,
+              "TOTAL": cp.valor,
+            },
+          );
+        }
+      }
+
+      final listCPFinal = listCP.map(CPAdapter.fromMap).toList();
+
+      if (filtro.isNotEmpty) {
+        return listCPFinal
+            .where((cp) => (cp.nome.toLowerCase().removeAcentos().contains(
+                  filtro.toLowerCase().removeAcentos(),
+                )))
+            .toList();
+      }
+
+      return listCPFinal;
     }
 
     return cps

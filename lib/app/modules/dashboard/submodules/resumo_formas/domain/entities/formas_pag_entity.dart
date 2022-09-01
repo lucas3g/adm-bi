@@ -4,8 +4,6 @@ class FormasPag {
   final String descricao;
   final String tipo;
   final double totalForma;
-  final double totalGeral;
-  final double percentual;
 
   FormasPag({
     required this.ccusto,
@@ -13,7 +11,5 @@ class FormasPag {
     required this.descricao,
     required this.tipo,
     required this.totalForma,
-    required this.totalGeral,
-    required this.percentual,
   });
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/domain/entities/formas_pag_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/resumo_formas/infra/adapters/formas_pag_adapter.dart';
 
 abstract class FormasPagStates {
   final List<FormasPag> formasPag;
@@ -35,6 +36,30 @@ abstract class FormasPagStates {
   List<FormasPag> get filtredList {
     if (ccusto == 0) {
       return formasPag;
+    }
+
+    if (ccusto == -1) {
+      List<Map<String, dynamic>>? listFPs = [];
+
+      for (var forma in formasPag) {
+        if (listFPs.map((e) => e['FORMA_PAG']).contains(forma.formaPag)) {
+          listFPs[listFPs.indexWhere((e) => e['FORMA_PAG'] == forma.formaPag)]
+              ["TOTAL_FORMA"] += forma.totalForma;
+        } else {
+          listFPs.add(
+            {
+              "LOCAL": -1,
+              "FORMA_PAG": forma.formaPag,
+              "CCUSTO": forma.ccusto,
+              "TIPO": forma.tipo,
+              "DESC_FORMA": forma.descricao,
+              "TOTAL_FORMA": forma.totalForma,
+            },
+          );
+        }
+      }
+
+      return listFPs.map(FormasPagAdapter.fromMap).toList();
     }
 
     return formasPag.where((forma) => (forma.ccusto == ccusto)).toList();

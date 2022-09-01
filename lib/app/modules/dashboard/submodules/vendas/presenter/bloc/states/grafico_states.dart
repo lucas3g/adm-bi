@@ -33,6 +33,34 @@ abstract class GraficoStates {
       return grafico;
     }
 
+    if (ccusto == -1) {
+      final Map<DateTime, double> totalGeral = {};
+
+      for (var graf in grafico) {
+        if (totalGeral.containsKey(graf.data)) {
+          totalGeral[graf.data] = totalGeral[graf.data]! + graf.total;
+        } else {
+          totalGeral[graf.data] = graf.total;
+        }
+      }
+
+      final List<GraficoVendas> listGrafico = [];
+
+      listGrafico.addAll(
+        totalGeral.entries.map(
+          (venda) {
+            return GraficoVendas(
+              ccusto: -1,
+              data: venda.key,
+              total: venda.value,
+            );
+          },
+        ),
+      );
+
+      return listGrafico;
+    }
+
     return grafico.where((venda) => (venda.ccusto == ccusto)).toList();
   }
 }

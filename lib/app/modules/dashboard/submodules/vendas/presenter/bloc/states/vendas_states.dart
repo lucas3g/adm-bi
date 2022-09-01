@@ -33,6 +33,30 @@ abstract class VendasStates {
       return vendas;
     }
 
+    if (ccusto == -1) {
+      final Map<DateTime, double> totalGeral = {};
+
+      for (var venda in vendas) {
+        if (totalGeral.containsKey(venda.data)) {
+          totalGeral[venda.data] = totalGeral[venda.data]! + venda.total;
+        } else {
+          totalGeral[venda.data] = venda.total;
+        }
+      }
+
+      final List<Vendas> listVendas = [];
+
+      listVendas.addAll(
+        totalGeral.entries.map(
+          (venda) {
+            return Vendas(ccusto: -1, data: venda.key, total: venda.value);
+          },
+        ),
+      );
+
+      return listVendas;
+    }
+
     return vendas.where((venda) => (venda.ccusto == ccusto)).toList();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:adm_bi/app/modules/dashboard/submodules/contas/domain/entities/contas_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/contas/infra/adapters/contas_adapter.dart';
 
 abstract class ContasStates {
   final List<Contas> contas;
@@ -37,6 +38,43 @@ abstract class ContasStates {
   List<Contas> get filtredList {
     if (ccusto == 0) {
       return contas;
+    }
+
+    if (ccusto == -1) {
+      List<Map<String, dynamic>>? listContas = [];
+
+      for (var conta in contas) {
+        if (listContas
+            .map((e) => e['CARD_SUBTITLE'])
+            .contains(conta.cardSubtitle)) {
+          listContas[listContas
+                  .indexWhere((e) => e['CARD_SUBTITLE'] == conta.cardSubtitle)]
+              ["TOTAL_DIA"] += conta.totalDiario;
+          listContas[listContas
+                  .indexWhere((e) => e['CARD_SUBTITLE'] == conta.cardSubtitle)]
+              ["TOTAL_SEMANA"] += conta.totalSemanal;
+          listContas[listContas
+                  .indexWhere((e) => e['CARD_SUBTITLE'] == conta.cardSubtitle)]
+              ["TOTAL_MES"] += conta.totalMes;
+        } else {
+          listContas.add(
+            {
+              "CCUSTO": -1,
+              "TOTAL_DIA": conta.totalDiario,
+              "TOTAL_SEMANA": conta.totalSemanal,
+              "TOTAL_MES": conta.totalMes,
+              "CARD_SUBTITLE": conta.cardSubtitle,
+              "DC": conta.dc,
+              "CARD_COR": conta.cardColor.toString(),
+            },
+          );
+        }
+      }
+
+      listContas
+          .sort((a, b) => a['CARD_SUBTITLE'].compareTo(b['CARD_SUBTITLE']));
+
+      return listContas.map(ContasAdapter.fromMap).toList();
     }
 
     contas.sort((a, b) => a.cardSubtitle.compareTo(b.cardSubtitle));

@@ -33,6 +33,27 @@ abstract class ProjecaoStates {
       return projecao;
     }
 
+    if (ccusto == -1) {
+      final List<ProjecaoVendas> proj = [];
+
+      proj.add(
+        ProjecaoVendas(
+          ccusto: -1,
+          totalDiario: projecao
+              .map((e) => e.totalDiario)
+              .reduce((value, element) => value + element),
+          totalMes: projecao
+              .map((e) => e.totalMes)
+              .reduce((value, element) => value + element),
+          lucro: projecao
+              .map((e) => e.lucro)
+              .reduce((value, element) => value + element),
+        ),
+      );
+
+      return proj;
+    }
+
     return projecao.where((venda) => (venda.ccusto == ccusto)).toList();
   }
 }

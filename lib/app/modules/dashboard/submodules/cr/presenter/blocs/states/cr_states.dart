@@ -1,4 +1,5 @@
 import 'package:adm_bi/app/modules/dashboard/submodules/cr/domain/entities/cr_entity.dart';
+import 'package:adm_bi/app/modules/dashboard/submodules/cr/infra/adapters/cr_adapter.dart';
 import 'package:adm_bi/app/utils/formatters.dart';
 
 abstract class CRStates {
@@ -52,6 +53,37 @@ abstract class CRStates {
             (cr) => (cr.ccusto == ccusto),
           )
           .toList();
+    }
+
+    if (ccusto == -1) {
+      List<Map<String, dynamic>>? listCR = [];
+
+      for (var cr in crs) {
+        if (listCR.map((e) => e['NOME']).contains(cr.nome)) {
+          listCR[listCR.indexWhere((e) => e['NOME'] == cr.nome)]["TOTAL"] +=
+              cr.valor;
+        } else {
+          listCR.add(
+            {
+              "CCUSTO": cr.ccusto,
+              "NOME": cr.nome,
+              "TOTAL": cr.valor,
+            },
+          );
+        }
+      }
+
+      final listCRFinal = listCR.map(CRAdapter.fromMap).toList();
+
+      if (filtro.isNotEmpty) {
+        return listCRFinal
+            .where((cr) => (cr.nome.toLowerCase().removeAcentos().contains(
+                  filtro.toLowerCase().removeAcentos(),
+                )))
+            .toList();
+      }
+
+      return listCRFinal;
     }
 
     return crs
