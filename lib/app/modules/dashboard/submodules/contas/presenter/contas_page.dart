@@ -205,50 +205,73 @@ class _ContasPageState extends State<ContasPage> {
                           bottom: BorderSide(),
                         ),
                       ),
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1.7,
-                        ),
-                        itemCount: diaSemanaMes == 'Dia'
-                            ? contas.where((e) => e.totalDiario > 0).length
-                            : diaSemanaMes == 'Semana'
-                                ? contas.where((e) => e.totalSemanal > 0).length
-                                : contas.where((e) => e.totalMes > 0).length,
-                        itemBuilder: (context, index) {
-                          return MyCardsSaldoCRCP(
-                            backGroundColor: Color(contas[index].cardColor),
-                            saldo: diaSemanaMes == 'Dia'
-                                ? contas[index].totalDiario
-                                : diaSemanaMes == 'Semana'
-                                    ? contas[index].totalSemanal
-                                    : contas[index].totalMes,
-                            subtitle: contas[index]
-                                .cardSubtitle
-                                .replaceAll('1', '')
-                                .replaceAll('2', ''),
-                          );
-                        },
-                      ),
+                      child: (diaSemanaMes == 'Dia' &&
+                                  contas
+                                      .where((e) => e.totalDiario > 0)
+                                      .isNotEmpty) ||
+                              (diaSemanaMes == 'Semana' &&
+                                  contas
+                                      .where((e) => e.totalSemanal > 0)
+                                      .isNotEmpty) ||
+                              (diaSemanaMes == 'Mes' &&
+                                  contas
+                                      .where((e) => e.totalMes > 0)
+                                      .isNotEmpty)
+                          ? GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1.7,
+                              ),
+                              itemCount: diaSemanaMes == 'Dia'
+                                  ? contas
+                                      .where((e) => e.totalDiario > 0)
+                                      .length
+                                  : diaSemanaMes == 'Semana'
+                                      ? contas
+                                          .where((e) => e.totalSemanal > 0)
+                                          .length
+                                      : contas
+                                          .where((e) => e.totalMes > 0)
+                                          .length,
+                              itemBuilder: (context, index) {
+                                return MyCardsSaldoCRCP(
+                                  backGroundColor:
+                                      Color(contas[index].cardColor),
+                                  saldo: diaSemanaMes == 'Dia'
+                                      ? contas[index].totalDiario
+                                      : diaSemanaMes == 'Semana'
+                                          ? contas[index].totalSemanal
+                                          : contas[index].totalMes,
+                                  subtitle: contas[index]
+                                      .cardSubtitle
+                                      .replaceAll('1', '')
+                                      .replaceAll('2', ''),
+                                );
+                              },
+                            )
+                          : Text(
+                              'Nenhuma conta com filtro de $diaSemanaMes. Ajuste o filtro.'),
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: MyCardsSaldoCRCP(
-                            backGroundColor: saldo < 0
-                                ? const Color(0xfffe2836)
-                                : const Color(0xff4bac35),
-                            saldo: saldo,
-                            subtitle: 'Saldo Geral',
+                  saldo != 0
+                      ? Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: MyCardsSaldoCRCP(
+                                  backGroundColor: saldo < 0
+                                      ? const Color(0xfffe2836)
+                                      : const Color(0xff4bac35),
+                                  saldo: saldo,
+                                  subtitle: 'Saldo Geral',
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        )
+                      : const SizedBox(),
                 ],
               );
             },
