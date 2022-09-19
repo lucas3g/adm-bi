@@ -7,7 +7,7 @@
             "type": "dart",
             "toolArgs": [
                 "--dart-define",
-                "BASE_URL=https://elinfo2.jelastic.saveincloud.net/AppDashBoard",
+                "BASE_URL=http://elinfo2.jelastic.saveincloud.net/AppDashBoard",
                 "--dart-define",
                 "BASE_URL_LICENSE=http://18.228.152.149:9000"
             ]
@@ -21,7 +21,7 @@
             ],
             "toolArgs": [
                 "--dart-define",
-                "BASE_URL=https://elinfo2.jelastic.saveincloud.net/AppDashBoard",
+                "BASE_URL=http://elinfo2.jelastic.saveincloud.net/AppDashBoard",
                 "--dart-define",
                 "BASE_URL_LICENSE=http://18.228.152.149:9000"
             ]            
