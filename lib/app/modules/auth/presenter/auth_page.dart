@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
 import 'dart:async';
+import 'dart:io';
 
 import 'package:adm_bi/app/modules/auth/domain/entities/info_device_entity.dart';
 import 'package:adm_bi/app/modules/auth/presenter/blocs/events/info_device_events.dart';
@@ -27,7 +28,7 @@ import 'package:adm_bi/app/utils/constants.dart';
 import 'package:adm_bi/app/utils/formatters.dart';
 import 'package:adm_bi/app/utils/my_snackbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:share_whatsapp/share_whatsapp.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthBloc authBloc;
@@ -119,10 +120,9 @@ class _AuthPageState extends State<AuthPage> {
                       child: ElevatedButton.icon(
                         onPressed: () async {
                           await openWhatsapp(
-                            context: context,
                             text:
-                                'Código para Licença App DashBoard: ${_infoDeviceEntity.id}',
-                            number: '+5554999712433',
+                                'Olá, desejo usar o aplicativo do ADM BI esse é meu codigo de autenticação: ${_infoDeviceEntity.id}',
+                            number: '+555499712433',
                           );
                         },
                         icon: const Icon(Icons.whatsapp_rounded),
@@ -138,22 +138,29 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Future<void> openWhatsapp({
-    required BuildContext context,
     required String text,
     required String number,
   }) async {
-    final wpp = await shareWhatsapp.installed(type: WhatsApp.standard);
+    var whatsappURlAndroid = "whatsapp://send?phone=$number&text=$text";
+    var whatsappURLIos =
+        "https://wa.me/${number.replaceAll('+', '')}?text=$text";
 
-    final business = await shareWhatsapp.installed(type: WhatsApp.business);
-
-    if (wpp || business) {
-      await shareWhatsapp.shareText(
-        text,
-        phone: number,
-        type: wpp ? WhatsApp.standard : WhatsApp.business,
-      );
+    if (Platform.isIOS) {
+      if (await canLaunchUrl(Uri.parse(whatsappURLIos))) {
+        await launchUrl(Uri.parse(whatsappURLIos));
+      } else {
+        MySnackBar(
+          message: 'Whatsapp não está instalado.',
+        );
+      }
     } else {
-      MySnackBar(message: "Whatsapp não está instalado");
+      if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
+        await launchUrl(Uri.parse(whatsappURlAndroid));
+      } else {
+        MySnackBar(
+          message: 'Whatsapp não está instalado.',
+        );
+      }
     }
   }
 
