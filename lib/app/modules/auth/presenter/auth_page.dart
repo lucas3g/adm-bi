@@ -106,7 +106,12 @@ class _AuthPageState extends State<AuthPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Código de Autenticação: ${_infoDeviceEntity.id}',
+                  'Código de Autenticação',
+                  style: AppTheme.textStyles.titleDialog,
+                ),
+                const Divider(),
+                Text(
+                  _infoDeviceEntity.id,
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 16),
                 ),
                 Text(
@@ -423,7 +428,7 @@ class _AuthPageState extends State<AuthPage> {
                                   VerifyLicenseStates>(
                               bloc: widget.verifyLicenseBloc,
                               builder: (context, stateLicense) {
-                                return GestureDetector(
+                                return InkWell(
                                   onTap: stateLicense
                                               is! VerifyLicenseLoadingState &&
                                           state is! AuthLoadingState &&
