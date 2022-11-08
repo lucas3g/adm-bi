@@ -201,7 +201,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               index: _currentIndex,
               color: AppTheme.colors.primary,
               backgroundColor: Colors.white,
-              height: 55,
+              height: 60,
               items: [
                 IconsBottomBarWidget(
                   label: 'Vendas',
