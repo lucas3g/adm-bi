@@ -10,6 +10,7 @@ import 'package:adm_bi/app/components/my_title_app_bar_widget.dart';
 import 'package:adm_bi/app/core_module/constants/constants.dart';
 import 'package:adm_bi/app/core_module/services/shared_preferences/local_storage_interface.dart';
 import 'package:adm_bi/app/modules/dashboard/presenter/controllers/dashboard_controller.dart';
+import 'package:adm_bi/app/modules/dashboard/presenter/widgets/icons_bottom_bar_widget.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/states/vendas_states.dart';
 import 'package:adm_bi/app/modules/dashboard/submodules/vendas/presenter/bloc/vendas_bloc.dart';
 import 'package:adm_bi/app/theme/app_theme.dart';
@@ -200,49 +201,49 @@ class _DashBoardPageState extends State<DashBoardPage> {
               index: _currentIndex,
               color: AppTheme.colors.primary,
               backgroundColor: Colors.white,
-              height: 60,
+              height: 55,
               items: [
-                Icon(
-                  _currentIndex == 0
-                      ? Icons.attach_money_rounded
-                      : Icons.attach_money_outlined,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'Vendas',
+                  iconRounded: Icons.attach_money_rounded,
+                  iconOutlined: Icons.attach_money_outlined,
+                  indexIcon: 0,
+                  currentIndex: _currentIndex,
                 ),
-                Icon(
-                  _currentIndex == 1
-                      ? Icons.analytics_rounded
-                      : Icons.analytics_outlined,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'Caixa',
+                  iconRounded: Icons.analytics_rounded,
+                  iconOutlined: Icons.analytics_rounded,
+                  indexIcon: 1,
+                  currentIndex: _currentIndex,
                 ),
-                Icon(
-                  _currentIndex == 2
-                      ? Icons.receipt_long
-                      : Icons.receipt_long_rounded,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'FP',
+                  iconRounded: Icons.receipt_long,
+                  iconOutlined: Icons.receipt_long_rounded,
+                  indexIcon: 2,
+                  currentIndex: _currentIndex,
                 ),
-                Icon(
-                  _currentIndex == 3
-                      ? Icons.call_received
-                      : Icons.call_received_rounded,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'CR',
+                  iconRounded: Icons.call_received,
+                  iconOutlined: Icons.call_received_rounded,
+                  indexIcon: 3,
+                  currentIndex: _currentIndex,
                 ),
-                Icon(
-                  _currentIndex == 4
-                      ? Icons.call_made
-                      : Icons.call_made_rounded,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'CP',
+                  iconRounded: Icons.call_made,
+                  iconOutlined: Icons.call_made_rounded,
+                  indexIcon: 4,
+                  currentIndex: _currentIndex,
                 ),
-                Icon(
-                  _currentIndex == 5
-                      ? Icons.inventory_2_rounded
-                      : Icons.inventory_2_outlined,
-                  size: 30,
-                  color: Colors.white,
+                IconsBottomBarWidget(
+                  label: 'Estoque',
+                  iconRounded: Icons.inventory_2_rounded,
+                  iconOutlined: Icons.inventory_2_outlined,
+                  indexIcon: 5,
+                  currentIndex: _currentIndex,
                 ),
               ],
               onTap: (index) {

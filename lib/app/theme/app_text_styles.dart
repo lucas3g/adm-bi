@@ -30,6 +30,8 @@ abstract class AppTextStyles {
   TextStyle get titleTotalGeralCRCP;
   TextStyle get titleResumoFp;
   TextStyle get labelButtonLogin;
+  TextStyle get labelMEI;
+  TextStyle get labelIconsBottomBar;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -198,5 +200,19 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 14,
         color: Colors.black,
         decoration: TextDecoration.none,
+      );
+
+  @override
+  TextStyle get labelMEI => GoogleFonts.montserrat(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+      );
+
+  @override
+  TextStyle get labelIconsBottomBar => GoogleFonts.montserrat(
+        fontSize: 12,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
       );
 }

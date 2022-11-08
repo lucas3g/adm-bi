@@ -112,8 +112,9 @@ class _AuthPageState extends State<AuthPage> {
                 const Divider(),
                 Text(
                   _infoDeviceEntity.id,
-                  style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 16),
+                  style: AppTheme.textStyles.labelMEI,
                 ),
+                const SizedBox(height: 10),
                 Text(
                   'Se você já tem uma licença. Por favor, ignore essa mensagem.',
                   style: AppTheme.textStyles.textoTermo.copyWith(fontSize: 13),
@@ -124,6 +125,17 @@ class _AuthPageState extends State<AuthPage> {
                     Expanded(
                       child: ElevatedButton.icon(
                         onPressed: () async {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+                        },
+                        icon: const Icon(Icons.close_rounded),
+                        label: const Text('Fechar'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
                           await openWhatsapp(
                             text:
                                 'Olá, desejo usar o aplicativo do ADM BI esse é meu codigo de autenticação: ${_infoDeviceEntity.id}',
@@ -131,7 +143,7 @@ class _AuthPageState extends State<AuthPage> {
                           );
                         },
                         icon: const Icon(Icons.whatsapp_rounded),
-                        label: const Text('Enviar código'),
+                        label: const FittedBox(child: Text('WhatsApp')),
                       ),
                     ),
                   ],
