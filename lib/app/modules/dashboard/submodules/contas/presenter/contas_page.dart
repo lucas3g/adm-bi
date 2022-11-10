@@ -245,7 +245,10 @@ class _ContasPageState extends State<ContasPage> {
                                       : diaSemanaMes == 'Semana'
                                           ? contas[index].totalSemanal
                                           : contas[index].totalMes,
-                                  subtitle: contas[index].cardSubtitle,
+                                  subtitle: contas[index]
+                                      .cardSubtitle //FAÇO ISSO PARA NAO PERDER A ORDENAÇÃO DO CR POR PRIMEIRO
+                                      .replaceAll('1', '')
+                                      .replaceAll('2', ''),
                                 );
                               },
                             )
