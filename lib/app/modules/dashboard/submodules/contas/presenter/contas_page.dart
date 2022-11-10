@@ -171,10 +171,11 @@ class _ContasPageState extends State<ContasPage> {
                               Icons.arrow_back_ios,
                             ),
                           ),
-                        ] else
+                        ] else ...[
                           const SizedBox(
                             width: 35,
                           ),
+                        ],
                         Text(diaSemanaMes),
                         if (diaSemanaMes != 'Mes') ...[
                           IconButton(
@@ -187,10 +188,11 @@ class _ContasPageState extends State<ContasPage> {
                               Icons.arrow_forward_ios,
                             ),
                           ),
-                        ] else
+                        ] else ...[
                           const SizedBox(
                             width: 35,
                           ),
+                        ],
                       ],
                     ),
                   ),
@@ -243,10 +245,7 @@ class _ContasPageState extends State<ContasPage> {
                                       : diaSemanaMes == 'Semana'
                                           ? contas[index].totalSemanal
                                           : contas[index].totalMes,
-                                  subtitle: contas[index]
-                                      .cardSubtitle
-                                      .replaceAll('1', '')
-                                      .replaceAll('2', ''),
+                                  subtitle: contas[index].cardSubtitle,
                                 );
                               },
                             )
