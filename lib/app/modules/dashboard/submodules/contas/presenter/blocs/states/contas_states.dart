@@ -86,7 +86,7 @@ abstract class ContasStates {
     late double saldo = 0;
     for (var conta
         in filtredList.where((e) => e.cardSubtitle != 'Boletos').toList()) {
-      //B = CP
+      //D = CP
       if (conta.dc != 'D') {
         if (diaSemanaMes == 'Dia') {
           saldo += conta.totalDiario;
